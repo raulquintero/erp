@@ -1,0 +1,341 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+	<!-- Apple devices fullscreen -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Apple devices fullscreen -->
+	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<title>{% block title %}Ubuntu{% endblock %}</title>
+
+	{% block head %} {% endblock %}
+
+	{% block styles %} {% endblock %}
+	<style>
+    .temp{
+		position: absolute;
+		float: left;
+		left: 200px;
+	}
+		.loader {
+            height: 6px;
+            width: 100%;
+            position: relative;
+            display: none;
+            overflow: hidden;
+            background-color: #368ee0;
+        }
+
+        #loader {
+            height: 6px;
+            display: inline;
+            /* background-color:red; */
+        }
+
+        .loader:before {
+            display: block;
+            position: absolute;
+            content: "";
+            left: -200px;
+            width: 200px;
+            height: 6px;
+            background-color: #f81a1a;
+            animation: loading 2s linear infinite;
+        }
+		   @keyframes loading {
+            from {
+                left: -200px;
+                width: 30%;
+            }
+
+            50% {
+                width: 30%;
+            }
+
+            70% {
+                width: 70%;
+            }
+
+            80% {
+                left: 50%;
+            }
+
+            95% {
+                left: 120%;
+            }
+
+            to {
+                left: 100%;
+            }
+        }
+/* bottom bar */
+
+
+ .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #e63a3a ;
+            color: black;
+            text-align: left;
+            border-top: 3px solid #e63a3a;
+
+        }
+
+ .droplogo {
+    background-color: #e63a3a;
+    color: #fff; 
+    padding: 10px;
+    font-size: 12px;
+    border: none;
+}
+.dropbtn {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px;
+    font-size: 12px;
+    border: none;
+    border-top: 1px solid #DA1C00;
+    border-right: 2px solid #DA1C00;
+    margin : 0px;
+
+}
+
+.dropup {
+    position: relative;
+    display: inline-block;
+}
+
+.dropup-content {
+    display: none;
+    position: absolute;
+    background-color: #B5BABA;
+    min-width: 160px;
+    bottom: 36px;
+    z-index: 1;
+    color: #000;
+    padding:6px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-left: 3px solid #e63a3a;
+    border-top: 3px solid #e63a3a;
+    border-right: 3px solid #e63a3a;
+
+
+}
+hr {
+    border: 0px;
+    border-top: 3px double #e63a3a;
+    color: #e63a3a;
+    background-color: #e63a3a;
+    /* height: 3px;   */
+    width: 100%
+}
+
+.dropup-content a {
+    color: #B5BABA;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.hline { width:100%; height:1px; background: #fff }
+
+.dropup-content a:hover {background-color: #ccc; color: #000;}
+
+.dropup:hover .dropup-content {
+    display: block;
+}
+
+.dropup:hover .dropbtn {
+    background-color: #B5BABA;
+    color: #000;
+}
+.icon{
+    position:absolute;
+    margin-right:-20px;
+}
+
+@media screen and (max-width: 600px) {
+    .title{
+        display: none;
+    }
+    .brandname{
+        display: none;
+    }
+    .img-right{
+        width: 150px;
+    }
+    
+    /* .dropup-content {
+        right: -30px;
+    } */
+}
+#colophon {
+    border-top-style: solid;
+    border-top-color: #CCC;
+    border-top-width: 2px;
+}
+/* bottom bar */
+.icon-nav {
+
+    display:  inline !important;
+    position: relative;
+}
+
+@media screen and (max-width: 840px) {
+ 
+    .icon-nav {
+
+        display:  inline !important;
+    }
+    
+}
+
+@media screen and (max-width: 1500px) {
+    body {
+        font-size:20px !important;
+    }
+    #navigation .main-nav > li > a {
+    font-size: 20px !important;
+    }
+    .dropdown-menu > li > a {
+    font-size: 20px !important;
+}
+}
+
+.letterCircle {
+  border-radius: 35%;
+  width: 26px;
+  height: 22px;
+  padding: 6px;
+  background: green;
+  border: 2px solid #fff5;
+  color: white;
+  text-align: center;
+  font: 16px Arial, sans-serif;
+    display:inline-table;
+    line-height: 23px;
+}
+
+.imageCircle {
+    border-radius: 53%;
+    background: #188f2f;
+    border: 3px solid #fff5;
+    line-height: normal;
+    display: inline-table;
+    line-height: 23px;
+    }
+    
+    /* remueve menu izquierdo */
+	#left {
+		width:0px;
+	}
+	#main {
+		left: 0px;
+		margin-left: 0px;
+		padding-bottom: 0px;
+	}
+	</style>
+	
+
+
+
+	<!--[if lte IE 9]>
+		<script src="/flat/js/plugins/placeholder/jquery.placeholder.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('input, textarea').placeholder();
+			});
+		</script>
+	<![endif]-->
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/img/favicon.ico" />
+	<!-- Apple devices Homescreen icon -->
+	<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-precomposed.png" />
+
+</head>
+
+<body class="theme-{{ themeColor }}" data-theme="theme-{{ themeColor }}" data-mobile-sidebar="button">
+
+{% include 'SetupBundle/Templates/Components/navbar.twig' %}
+
+	<div class="container-fluid nav-hidden-not nav-fixed" id="content">
+    {# {% if pageTitle is defined and pageTitle is not empty %} #}
+		{% include 'SetupBundle/Templates/Components/left.twig' %}
+    {% if  name is defined and name is not empty %}
+    {% endif %}
+
+
+		<div id="main">
+		{% block main %}{% endblock %}
+			
+		</div>
+
+        
+	</div>
+	
+
+
+
+	<!-- extra js -->
+    {# <script src="/assets/js/local/listenerTemplate.js"></script> #}
+    
+	{% block scripts %} {% endblock %}
+	{# <script src="http://auth.kumai.local/assets/js/remote/init.js"></script> #}
+</body>
+
+
+</html>
+<!--
+ <div class="footer">
+            <div class="dropup">
+                    <button class="droplogo"><b>System<span class="title"> Debug Bar</span></b></button>
+                    
+                </div>
+
+        <div class="dropup">
+            <button class="dropbtn"><span class="title">SERVER: </span>Alpha</button>
+            <div class="dropup-content">
+                <p>Skeleton
+                    <br> Slim</p>
+
+            </div>
+        </div>
+
+        <div class="dropup titie">
+            <button class="dropbtn"><span class="title">User: </span>raul</button>
+            <div class="dropup-content">
+                    <p>MSISDN: 23423423525
+                    <div class="block_1">Lorem</div> 
+                    <div id="colophon"></div>
+                    <br>Header: X-MSISDN
+                    </p>
+    
+                </div>
+        </div>
+
+        <div class="dropup">
+            <button class="dropbtn"><span class="title">STATUS: </span>active</button>
+            <div class="dropup-content">
+                <p>
+                eyIwIjp7InR5cGUiOiJpbmZvIiwiaW5kZXgiOm51bGwsImxvZyI6eyJsb2NhdGlvbiI6InNtc1wvZGNfYXJfbW92aXN0YXJfNTA1MDUucGhwLCBsbjogNDYiLCJtZXNzYWdlIjoiTm90aWZpY2F0aW9ucyBmcm9tIHRoZSBwYXJ0bmVyICggMiApIiwiZGF0YSI6eyJwb3N0Ijp7InJlcSI6Ilt7XCJ0aXBvQ3RyXCI6XCJjb2JyYWRvXCIsXCJydGlkXCI6XCI1YzZmMDlhYmNiYWM2OWYzNzE4YjQ1OGVcIixcImV0aWRcIjpudWxsLFwicHJlY2lvXCI6Nzk4OCxcImNvZFRhc1wiOlwiOTI2fDQ0fDE5MTE2XCIsXCJ4aW5mb1wiOlwiZ2x0MTAwIHVubG9jayB2MDA2IHMwMDEgMjg5MyAxIDgxMTkgZXMgMCAwfjExNjMwNTg1ODR-MTUyNlwifSx7XCJ0aXBvQ3RyXCI6XCJyZWNpYmlkb1wiLFwicnRpZFwiOlwiNWM2ZjA5YWJjYmFjNjlmMzcxOGI0NThlXCIsXCJtc2dcIjpcImdsdDEwMCB1bmxvY2sgdjAwNiBzMDAxIDI4OTMgMSA4MTE5IGVzIDAgMFwiLFwiaWRTZXJ2aWNpb1wiOjE1MjYsXCJtc2lzZG5cIjpcIjExNjMwNTg1ODRcIn1dIn0sImVuZCBwb2ludCI6Imh0dHA6XC9cL2NvbmZpcm1hdGlvbi5nYW1lbG9mdC5jb21cL3Ntc1wvZGNfYXJfbW92aXN0YXJfNTA1MDUucGhwIiwiUkVNT1RFX0FERFIiOiI1Mi4yMDMuMzYuNzkiLCJIVFRQX1hfRk9SV0FSREVEX0ZPUiI6IjUyLjIwMy4zNi43OSwgNTIuMjAzLjM2Ljc5Iiwibm90aWZpY2F0aW9ucyI6W3sidGlwb0N0ciI6ImNvYnJhZG8iLCJydGlkIjoiNWM2ZjA5YWJjYmFjNj
+ lmMzcxOGI0NThlIiwiZXRpZCI6bnVsbCwicHJlY2lvIjo3OTg4LCJjb2RUYXMiOiI5MjZ8NDR8MTkxMTYiLCJ4aW5mbyI6ImdsdDEwMCB1bmxvY2sgdjAwNiBzMDAxIDI4OTMgMSA4MTE5IGVzIDAgMH4xMTYzMDU4NTg0fjE1MjYifSx7InRpcG9DdHIiOiJyZWNpYmlkbyIsInJ0aWQiOiI1YzZmMDlhYmNiYWM2OWYzNzE4YjQ1OGUiLCJtc2ciOiJnbHQxMDAgdW5sb2NrIHYwMDYgczAwMSAyODkzIDEgODExOSBlcyAwIDAiLCJpZFNlcnZpY2lvIjoxNTI2LCJtc2lzZG4iOiIxMTYzMDU4NTg0In1dfX19LCIxIjp7InR5cGUiOiJXYXJuaW5nIiwiaW5kZXgiOiI1YzZmMDlhYmNiYWM2OWYzNzE4YjQ1OGUiLCJsb2ciOnsibG9jYXRpb24iOiJTbXNjXFxPbkRlbWFuZFxcTm90aWZpY2F0aW9uXFxOb3RpZmljYXRpb25Qcm9jZXNzb3I6OmZpbHRlciwgbG46IDQwIiwibWVzc2FnZSI6Ik5vIHNlIHB1ZWRlIHByb2Nlc2FyIFsgY3RyIC0gcmVjaWJpZG8gXSIsImRhdGEiOnsibm90aWZpY2F0aW9uIjp7InRpcG9DdHIiOiJyZWNpYmlkbyIsInJ0aWQiOiI1YzZmMDlhYmNiYWM2OWYzNzE4YjQ1OGUiLCJtc2ciOiJnbHQxMDAgdW5sb2NrIHYwMDYgczAwMSAyODkzIDEgODExOSBlcyAwIDAiLCJpZFNlcnZpY2lvIjoxNTI2LCJtc2lzZG4iOiIxMTYzMDU4NTg0In0sIm5leHRGb3J3YXJkIjp7Im5leHRGb3J3YXJkIjpudWxsfX19fSwiMiI6eyJ0eXBlIjoiaW5mbyIsImluZGV4IjoiNWM2ZjA5YWJjYmFjNjlmMzcxOGI0NThlIiwibG9
+ nIjp7IjAiOiIrKysrIG1zaXNkbjogNTQxMTYzMDU4NTg0LCBydGlkOiA1YzZmMDlhYmNiYWM2OWYzNzE4YjQ1OGUgKysrKysiLCJsb2NhdGlvbiI6Ikdsb2Z0XFxTbXNcXFN0YXJ0QmlsbGluZ01POjpfX2NvbnN0cnVjdCwgbG46IDI5IiwibWVzc2FnZSI6Im5vdGlmaWNhdGlvbiBzdGFydGJpbGxpbmdNTyIsImZ1bmN0aW9uIjoic21zX2NvbW1vblN0YXJ0KCRtc2lzZG4sICRtc2csIHNlbGY6OiRzeXN0ZW1JZCwgJHJ0aWQsIHNlbGY6OiRvcGVyYXRvcklkLCBzZWxmOjokc2hvcnRDb2RlLCAwLCAwLCAkcnRpZCwgJGV4dHJhUGFyYW1zKTsiLCJub3RpZmljYXRpb24iOnsibXNpc2RuIjoiNTQxMTYzMDU4NTg0IiwibXNnIjoiR0xUMTAwIFVOTE9DSyBWMDA2IFMwMDEgMjg5MyAxIDgxMTkgRVMgMCAwIiwic2VydmljZUlkIjoiMTUyNiIsInJ0aWQiOiI1YzZmMDlhYmNiYWM2OWYzNzE4YjQ1OGUiLCJldGlkIjpudWxsLCJwcmljZSI6Nzk4OCwidHlwZSI6ImNvYnJhZG8ifSwiZXh0cmFQYXJhbXMiOnsicnRpZCI6IjVjNmYwOWFiY2JhYzY5ZjM3MThiNDU4ZSIsImlkU2VydmljaW8iOiIxNTI2IiwiYmlsbCI6MH19fSwiMyI6eyJ0eXBlIjoiaW5mbyIsImluZGV4IjoiNWM2ZjA5YWJjYmFjNjlmMzcxOGI0NThlIiwibG9nIjp7ImxvY2F0aW9uIjoiU21zY1xcT25EZW1hbmRcXFNNU1xcUlhFOjpjb25uZWN0LCBsbjogMTA4IiwibWVzc2FnZSI6ImNvbnRlbmlkbyBkZSByZXF1ZXN0SW5mbywgcGFyYSBjb25zdW1pciBsYSBB
+ UEkgUlhFLCBldGlkOiAyNzg4OSIsImRhdGEiOnsicmVxdWVzdEluZm8iOiJyZXE9W3tcIm1zZ1wiOlwiRWwgY29kaWdvIGRlIGRlc2Jsb3F1ZW8gZGUgUmV0byBNZW50YWwgZXMgNTYyOTcuIEFicmUgZWwgbWVudSBwcmluY2lwYWwgZSBpbnRyb2R1Y2UgZWwgY29kaWdvIHBhcmEgZGlzZnJ1dGFyIGRlIGxhIHZlcnNpb24gY29tcGxldGEuXCIsXCJydGlkXCI6XCI1YzZmMDlhYmNiYWM2OWYzNzE4YjQ1OGVcIixcImV0aWRcIjoyNzg4OSxcImlkU2VydmljaW9cIjpcIjE1MjZcIixcImJpbGxcIjowLFwiaWRJbnRlZ3JhZG9yXCI6MjMsXCJpZENhcnJpZXJcIjoxfV0iLCJkYXRhIjp7Im1zZyI6IkVsIGNvZGlnbyBkZSBkZXNibG9xdWVvIGRlIFJldG8gTWVudGFsIGVzIDU2Mjk3LiBBYnJlIGVsIG1lbnUgcHJpbmNpcGFsIGUgaW50cm9kdWNlIGVsIGNvZGlnbyBwYXJhIGRpc2ZydXRhciBkZSBsYSB2ZXJzaW9uIGNvbXBsZXRhLiIsInJ0aWQiOiI1YzZmMDlhYmNiYWM2OWYzNzE4YjQ1OGUiLCJldGlkIjoyNzg4OSwiaWRTZXJ2aWNpbyI6IjE1MjYiLCJiaWxsIjowLCJpZEludGVncmFkb3IiOjIzLCJpZENhcnJpZXIiOjF9fX19LCI0Ijp7InR5cGUiOiJpbmZvIiwiaW5kZXgiOiI1YzZmMDlhYmNiYWM2OWYzNzE4YjQ1OGUiLCJsb2ciOnsibG9jYXRpb24iOiJTbXNjXFxPbkRlbWFuZFxcU01TXFxSWEU6OmNvbm5lY3QsIGxuOiAxMzgiLCJtZXNzYWdlIjoiUmVzcHVlc3RhIFJYRTogIiwiZGF0YSI6eyJ1cmwiOiJodHRwO
+ lwvXC9vbmRlbWFuZC5zbXNjb25zdWx0aW5nLmNvbXBhbnlcL3J4ZS5waHAiLCJyZXNwb25zZVJYRSI6eyJjb2RlIjowLCJtc2ciOiJUcmFuc2FjY2lvbiBhY2VwdGFkYSIsInJlcXVlc3RzIjpbXX0sInJlcXVlc3RJbmZvIjoicmVxPVt7XCJtc2dcIjpcIkVsIGNvZGlnbyBkZSBkZXNibG9xdWVvIGRlIFJldG8gTWVudGFsIGVzIDU2Mjk3LiBBYnJlIGVsIG1lbnUgcHJpbmNpcGFsIGUgaW50cm9kdWNlIGVsIGNvZGlnbyBwYXJhIGRpc2ZydXRhciBkZSBsYSB2ZXJzaW9uIGNvbXBsZXRhLlwiLFwicnRpZFwiOlwiNWM2ZjA5YWJjYmFjNjlmMzcxOGI0NThlXCIsXCJldGlkXCI6Mjc4ODksXCJpZFNlcnZpY2lvXCI6XCIxNTI2XCIsXCJiaWxsXCI6MCxcImlkSW50ZWdyYWRvclwiOjIzLFwiaWRDYXJyaWVyXCI6MX1dIn19fSwidGl0bGUiOiI1Mi4yMDMuMzYuNzkgW2Fycml2YWwgb2YgbmV3IG5vdGlmaWNhdGlvbnNdICIsInNlcnZpY2VUYWciOiJbTW92aXN0YXJBcl1bTU9dWzUwNTA1XVs1Mi4yMDMuMzYuNzldIExvZ3MiLCJkYXRlIjoiVVRDIDIxLTAyLTIwMTkgMDg6Mjc6MjQiLCJ3YXJuaW5ncyI6MSwiZmF0YWxzIjowLCJSRU1PVEVfQUREUiI6IjUyLjIwMy4zNi43OSJ9
+                </p>
+
+            </div>
+        </div>
+        <span class="title">Skeleton Slim</span>
+    </div>
+-->
+
+
+
+

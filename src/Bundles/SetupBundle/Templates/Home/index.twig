@@ -1,0 +1,254 @@
+{% extends 'SetupBundle/Templates/templateFlat.twig' %}
+
+
+
+{% block styles %}
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="/flat/css/bootstrap.min.css">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="/flat/css/plugins/jquery-ui/jquery-ui.min.css">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="/flat/css/style.css">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="/flat/css/themes.css">
+
+<style>
+
+	.bg {
+	position: absolute;
+	margin-left: auto;
+	margin-top: auto
+	}
+	.background-wrap {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 40px;
+		left: 0;
+		z-index: -1;
+		overflow: hidden;
+	}
+	.background {
+		background: url('https://www.bestfunforall.com/freepik1/imgs/Cheerful%20successful%20indian%20male%20entrepreneur%20pointing%20at%20you%20Wallpapers%201.jpg');
+		background-size: cover;
+		filter: blur(10px);
+		height: 105%;
+		position: relative;
+		width: 105%;
+		right: -2.5%;
+		left: -2.5%;
+		top: -2.5%;
+		bottom: -2.5%;
+	}
+
+	.tiles li.long a{
+		width: 180px;
+	}
+	.tiles li a{
+	height: 60px;
+	}
+	#left {
+		width:0px;
+	}
+	#main {
+		left: 0px;
+		margin-left: 0px;
+		padding-bottom: 0px;
+	}
+	.wallpaper {
+		width: 100%;
+	}
+</style>
+
+	
+{% endblock %}
+
+{% block main %}
+	
+		<div class="container-fluid">
+			<div class="page-header">
+				<div class="pull-left">
+				<h1>Welcome to Setup</h1>
+				</div>
+				<div class="pull-right" style="border-left:2px solid gray;padding-left:10px;">
+					
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="box">
+					<div class="box-title">
+						<h3>
+							<i class="fa fa-bars"></i>
+							Choose service
+						</h3>
+					</div>
+					<div class="box-content">
+						<div class="row">
+							<div class="pricing-tables">
+								<ul class="pricing col-sm-3">
+									<li class="head">
+										<div class="name">Free</div>
+										<div class="price">
+											$0
+											<span>per month</span>
+										</div>
+									</li>
+									<li>50 User</li>
+									<li>1000 Accounts</li>
+									<li>Unlimited Traffic</li>
+									<li>Lorem ipsum dolor.</li>
+									<li>Odio, fugit, nesciunt!</li>
+									<li>Voluptate, ad, iusto!</li>
+									<li>100 GB HDD</li>
+									<li>
+										<i class="fa fa-check"></i>Free setup</li>
+									<li>
+										<i class="fa fa-check"></i>30 Day free trial</li>
+									<li class="button">
+										<a href="#" class="btn btn-grey-4">Start</a>
+										<div class="help-text">Free for 30days</div>
+									</li>
+								</ul>
+								<ul class="pricing green col-sm-3">
+									<li class="head">
+										<div class="name">Medium</div>
+										<div class="price">
+											$15
+											<span>per month</span>
+										</div>
+									</li>
+									<li>50 User</li>
+									<li>1000 Accounts</li>
+									<li>Unlimited Traffic</li>
+									<li>Lorem ipsum dolor.</li>
+									<li>Odio, fugit, nesciunt!</li>
+									<li>Voluptate, ad, iusto!</li>
+									<li>100 GB HDD</li>
+									<li>
+										<i class="fa fa-check"></i>Free setup</li>
+									<li>
+										<i class="fa fa-check"></i>30 Day free trial</li>
+									<li class="button">
+										<a href="#" class="btn btn-green">Start</a>
+									</li>
+								</ul>
+								<ul class="pricing blue highlighted col-sm-3">
+									<li class="head">
+										<div class="name">Professional</div>
+										<div class="price">
+											$25
+											<span>per month</span>
+										</div>
+										<div class="info">Most popular plan</div>
+									</li>
+									<li>50 User</li>
+									<li>1000 Accounts</li>
+									<li>Unlimited Traffic</li>
+									<li>Lorem ipsum dolor.</li>
+									<li>Odio, fugit, nesciunt!</li>
+									<li>Voluptate, ad, iusto!</li>
+									<li>100 GB HDD</li>
+									<li>
+										<i class="fa fa-check"></i>Free setup</li>
+									<li>
+										<i class="fa fa-check"></i>30 Day free trial</li>
+									<li class="button">
+										<a href="#" class="btn btn-blue">Start</a>
+										<div class="help-text">Best value</div>
+									</li>
+								</ul>
+								<ul class="pricing red col-sm-3">
+									<li class="head">
+										<div class="name">Power pack</div>
+										<div class="price">
+											$35
+											<span>per month</span>
+										</div>
+									</li>
+									<li>50 User</li>
+									<li>1000 Accounts</li>
+									<li>Unlimited Traffic</li>
+									<li>Lorem ipsum dolor.</li>
+									<li>Odio, fugit, nesciunt!</li>
+									<li>Voluptate, ad, iusto!</li>
+									<li>100 GB HDD</li>
+									<li>
+										<i class="fa fa-check"></i>Free setup</li>
+									<li>
+										<i class="fa fa-check"></i>30 Day free trial</li>
+									<li class="button">
+										<a href="#" class="btn btn-red">Start</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+{% endblock %}
+
+{% block scripts %}
+
+	<!-- jQuery -->
+	<script src="/flat/js/jquery.min.js"></script>
+	<!-- Nice Scroll -->
+	<script src="/flat/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="/flat/js/plugins/jquery-ui/jquery-ui.js"></script>
+	<!-- slimScroll -->
+	<script src="/flat/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="/flat/js/bootstrap.min.js"></script>
+	<!-- Form -->
+	<script src="/flat/js/plugins/form/jquery.form.min.js"></script>
+
+
+
+
+{# 
+
+
+	<!-- vmap -->
+	<script src="/flat/js/plugins/vmap/jquery.vmap.min.js"></script>
+	<script src="/flat/js/plugins/vmap/jquery.vmap.world.js"></script>
+	<script src="/flat/js/plugins/vmap/jquery.vmap.sampledata.js"></script>
+	<!-- Bootbox -->
+	<script src="/flat/js/plugins/bootbox/jquery.bootbox.js"></script>
+	<!-- Flot -->
+	<script src="/flat/js/plugins/flot/jquery.flot.min.js"></script>
+	<script src="/flat/js/plugins/flot/jquery.flot.bar.order.min.js"></script>
+	<script src="/flat/js/plugins/flot/jquery.flot.pie.min.js"></script>
+	<script src="/flat/js/plugins/flot/jquery.flot.resize.min.js"></script>
+	<!-- imagesLoaded -->
+	<script src="/flat/js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+	<!-- PageGuide -->
+	<script src="/flat/js/plugins/pageguide/jquery.pageguide.js"></script>
+	<!-- FullCalendar -->
+	<script src="/flat/js/plugins/fullcalendar/moment.min.js"></script>
+	<script src="/flat/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+	<!-- Chosen -->
+	<script src="/flat/js/plugins/chosen/chosen.jquery.min.js"></script>
+	<!-- select2 -->
+	<script src="/flat/js/plugins/select2/select2.min.js"></script>
+	<!-- icheck -->
+	<script src="/flat/js/plugins/icheck/jquery.icheck.min.js"></script> #}
+
+
+
+
+	<!-- Theme framework -->
+	{# <script src="/flat/js/eakroko.min.js"></script> #}
+	<!-- Theme scripts -->
+	{# // <script src="/flat/js/application.min.js"></script> #}
+	<!-- Just for demonstration -->
+	{# // <script src="/flat/js/demonstration.min.js"></script> #}
+	
+	{# // <script src="/assets/js/local/ajax.js"></script> #}
+{% endblock %}

@@ -1,0 +1,69 @@
+
+    <div id="left">
+        {# <form action="search-results.html" method="GET" class='search-form'>
+            <div class="search-pane">
+                <input type="text" name="search" placeholder="Search here...">
+                <button type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </form> #}
+        {% if  name is defined and name is not empty %}
+        <div class="subnav">
+            <div class="subnav-title">
+                <a href="#" class='toggle-subnav'>
+                    <i class="fa fa-angle-down"></i>
+                    <span>Menu</span>
+                </a>
+            </div>
+
+            <ul class="subnav-menu">
+                <li >
+                    <a href="/pos/limpiaduria">Punto de Venta</a>
+                </li>
+                <li >
+                    <a href="/pos/planchado">Clientes</a>
+                </li>
+                <li>
+                    <a href="/pos/snacks">Ordenes</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+        <div class="subnav">
+            {# <div style="font-size: 100pt;font-weight: bold; text-align:center">LH</div> #}
+            {# <img src="/logo/huizar.png" width="190"> #}
+            <br><br>
+            <div style="text-align:center; font-size: larger">
+           
+            </div>
+            {# <div class="subnav-title">
+                <a href="#" class='toggle-subnav'>
+                    <i class="fa fa-angle-down"></i>
+                    <span>Huizar</span>
+                </a>
+            </div>
+
+            
+            <ul class="subnav-menu">
+                <li>
+                    <a href="http://apps.simplicity.local">Search Apps <i class="fa fa-search"></i></a>
+                </li>
+                <li>
+                    <a href="//classified.simplicity.local">Classified</a>
+                </li>
+                <li>
+                    <a href="/directisimo">Directisimo</a>
+                </li>
+                <li>
+                    <a href="//finance.simplicity.local">Personal Finance</a>
+                </li>
+                <li>
+                    <a href="//carlogger.simplicity.local">CarLogger</a>
+                </li>
+            </ul>#}
+        </div> 
+    </div>
+
+
+

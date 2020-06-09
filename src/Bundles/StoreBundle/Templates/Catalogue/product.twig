@@ -1,0 +1,378 @@
+{% extends 'MainBundle/Templates/templateFlat.twig' %}
+
+{% block styles %}
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="/flat/css/bootstrap.min.css">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="/flat/css/plugins/jquery-ui/jquery-ui.min.css">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="/flat/css/style.css">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="/flat/css/themes.css">
+
+<style>
+	.product-details .actions {
+    text-align: left;
+}
+</style>
+
+	
+{% endblock %}
+
+{% block main %}
+
+	       <div class="container-fluid">
+				<div class="page-header">
+					<div class="pull-left">
+						<h1>Shop product view</h1>
+					</div>
+					<div class="pull-right">
+						<ul class="minitiles">
+							<li class="grey">
+								<a href="#">
+									<i class="fa fa-cogs"></i>
+								</a>
+							</li>
+							<li class="lightgrey">
+								<a href="#">
+									<i class="fa fa-globe"></i>
+								</a>
+							</li>
+						</ul>
+						<ul class="stats">
+							<li class="satgreen">
+								<i class="fa fa-money"></i>
+								<div class="details">
+									<span class="big">$324,12</span>
+									<span>Balance</span>
+								</div>
+							</li>
+							<li class="lightred">
+								<i class="fa fa-calendar"></i>
+								<div class="details">
+									<span class="big">February 22, 2013</span>
+									<span>Wednesday, 13:56</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="breadcrumbs">
+					<ul>
+						<li>
+							<a href="more-login.html">Home</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+							<a href="more-files.html">Pages</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+							<a href="more-shop-product.html">Shop product view</a>
+						</li>
+					</ul>
+					<div class="close-bread">
+						<a href="#">
+							<i class="fa fa-times"></i>
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="box">
+							<div class="box-content">
+								<div class="row">
+									<div class="col-sm-6">
+										<a href="/flat/img/demo/shop/4.jpg" class="colorbox-image big cboxElement">
+											<img src="/flat/img/demo/shop/4.jpg" alt="">
+										</a>
+										<div class="more-images">
+											<ul class="thumbnails">
+												<li class="col-sm-3">
+													<a href="/flat/img/demo/shop/8.jpg" class="colorbox-image cboxElement">
+														<img src="/flat/img/demo/shop/8.jpg" alt="">
+													</a>
+												</li>
+												<li class="col-sm-3">
+													<a href="/flat/img/demo/shop/4.jpg" class="colorbox-image cboxElement">
+														<img src="/flat/img/demo/shop/4.jpg" alt="">
+													</a>
+												</li>
+												<li class="col-sm-3">
+													<a href="/flat/img/demo/shop/6.jpg" class="colorbox-image cboxElement">
+														<img src="/flat/img/demo/shop/6.jpg" alt="">
+													</a>
+												</li>
+												<li class="col-sm-3">
+													<a href="/flat/img/demo/shop/7.jpg" class="colorbox-image cboxElement">
+														<img src="/flat/img/demo/shop/7.jpg" alt="">
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="product-details">
+											<h4>Simple jeans</h4>
+											<div class="price">
+												$25,00
+											</div>
+											<div class="colors">
+												<h5>Colors</h5>
+												<ul class="colors">
+													<li class="red">
+														<a href=""></a>
+													</li>
+													<li class="blue">
+														<a href=""></a>
+													</li>
+													<li class="green">
+														<a href=""></a>
+													</li>
+													<li class="lightgrey">
+														<a href=""></a>
+													</li>
+												</ul>
+											</div>
+											<div class="sizes">
+												<h5>Sizes</h5>
+												<a href="#" class="btn">S</a>
+												<a href="#" class="btn">M</a>
+												<a href="#" class="btn">L</a>
+												<a href="#" class="btn">XL</a>
+											</div>
+											<div class="actions">
+												<a href="#" class="non">Add to whishlist</a>
+												<a href="#" class="btn btn-large btn-primary">Add to cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row margin-top">
+									<div class="col-sm-12">
+										<div class="infos">
+											<ul class="tabs tabs-inline tabs-top">
+												<li class="active">
+													<a href="#pro" data-toggle="tab">Product</a>
+												</li>
+												<li>
+													<a href="#info" data-toggle="tab">Information</a>
+												</li>
+												<li>
+													<a href="#rev" data-toggle="tab">Reviews</a>
+												</li>
+											</ul>
+											<div class="tab-content padding tab-content-inline tab-content-bottom">
+												<div class="tab-pane active" id="pro">Lorem ipsum Sed eiusmod eiusmod eu dolore qui ut sit sit sint elit tempor irure. Lorem ipsum Irure veniam non ea aliqua laboris et voluptate. Lorem ipsum Amet enim nisi pariatur sit consequat occaecat non. Lorem ipsum Reprehenderit dolor aliquip
+													nostrud sunt deserunt dolor ad veniam.</div>
+												<div class="tab-pane" id="info">Lorem ipsum Dolore magna Duis quis tempor eiusmod ut. Lorem ipsum Non pariatur enim mollit minim aliquip adipisicing do fugiat sit enim veniam ea. Lorem ipsum Pariatur aliqua amet dolore cillum culpa minim. Lorem ipsum Laborum sed dolor adipisicing
+													exercitation ea Excepteur sed dolore. Lorem ipsum Anim veniam id exercitation dolore incididunt aute nulla. Lorem ipsum Duis consectetur magna non nostrud laborum incididunt. Lorem ipsum Incididunt labore do non ut ut Excepteur. Lorem ipsum
+													Ut enim ex dolore quis non deserunt.</div>
+												<div class="tab-pane" id="rev">Lorem ipsum Veniam quis voluptate officia magna velit tempor exercitation elit nisi consequat officia in. Lorem ipsum Adipisicing ut voluptate aliqua elit reprehenderit incididunt aliquip sint quis. Lorem ipsum Commodo incididunt minim ex
+													consequat irure sit reprehenderit exercitation et proident velit. Lorem ipsum Veniam qui nostrud in minim Excepteur mollit cupidatat cupidatat cillum dolor Excepteur adipisicing. Lorem ipsum Amet culpa consequat eu ex ut Excepteur amet. Lorem
+													ipsum Dolore ut ut pariatur irure consequat in Excepteur quis laboris est minim. Lorem ipsum Do nisi quis est aliqua dolore adipisicing deserunt. Lorem ipsum Ut laboris minim Excepteur exercitation proident qui anim fugiat in non et deserunt.
+													Lorem ipsum In magna dolore do pariatur nostrud dolore et ut.</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row margin-top">
+									<div class="col-sm-12">
+										<h4>Related outfits</h4>
+										<ul class="shop-items">
+											<li class="col-sm-3">
+												<div class="product">
+													<a href="more-shop-product.html">
+														<img src="/flat/img/demo/shop/1.jpg" alt="">
+														<div class="details">
+															<div class="name">
+																Simple jeans
+															</div>
+															<div class="price">
+																$25.00
+															</div>
+														</div>
+													</a>
+													<div class="extended">
+														<div class="pull-left">
+															<ul class="colors small">
+																<li class="red">
+																	<a href="#"></a>
+																</li>
+																<li class="pink">
+																	<a href="#"></a>
+																</li>
+																<li class="lightgrey">
+																	<a href="#"></a>
+																</li>
+															</ul>
+														</div>
+														<div class="pull-right">
+															<a href="#" rel="tooltip" title="" data-original-title="Add to cart">
+																<i class="fa fa-shopping-cart"></i>
+															</a>
+															<a href="#" rel="tooltip" title="" data-original-title="Add to whishlist">
+																<i class="fa fa-cloud"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+												<!-- /.product -->
+											</li>
+											<li class="col-sm-3">
+												<div class="product">
+													<a href="more-shop-product.html">
+														<img src="/flat/img/demo/shop/4.jpg" alt="">
+														<div class="details">
+															<div class="name">
+																Simple jeans
+															</div>
+															<div class="price">
+																$25.00
+															</div>
+														</div>
+													</a>
+													<div class="extended">
+														<div class="pull-left">
+															<ul class="colors small">
+																<li class="red">
+																	<a href="#"></a>
+																</li>
+																<li class="pink">
+																	<a href="#"></a>
+																</li>
+																<li class="lightgrey">
+																	<a href="#"></a>
+																</li>
+															</ul>
+														</div>
+														<div class="pull-right">
+															<a href="#" rel="tooltip" title="" data-original-title="Add to cart">
+																<i class="fa fa-shopping-cart"></i>
+															</a>
+															<a href="#" rel="tooltip" title="" data-original-title="Add to whishlist">
+																<i class="fa fa-cloud"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+												<!-- /.product -->
+											</li>
+											<li class="col-sm-3">
+												<div class="product">
+													<a href="more-shop-product.html">
+														<img src="/flat/img/demo/shop/4.jpg" alt="">
+														<div class="details">
+															<div class="name">
+																Simple jeans
+															</div>
+															<div class="price">
+																$25.00
+															</div>
+														</div>
+													</a>
+													<div class="extended">
+														<div class="pull-left">
+															<ul class="colors small">
+																<li class="red">
+																	<a href="#"></a>
+																</li>
+																<li class="pink">
+																	<a href="#"></a>
+																</li>
+																<li class="lightgrey">
+																	<a href="#"></a>
+																</li>
+															</ul>
+														</div>
+														<div class="pull-right">
+															<a href="#" rel="tooltip" title="" data-original-title="Add to cart">
+																<i class="fa fa-shopping-cart"></i>
+															</a>
+															<a href="#" rel="tooltip" title="" data-original-title="Add to whishlist">
+																<i class="fa fa-cloud"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+												<!-- /.product -->
+											</li>
+											<li class="col-sm-3">
+												<div class="product">
+													<a href="more-shop-product.html">
+														<img src="/flat/img/demo/shop/6.jpg" alt="">
+														<div class="details">
+															<div class="name">
+																Simple jeans
+															</div>
+															<div class="price">
+																$25.00
+															</div>
+														</div>
+													</a>
+													<div class="extended">
+														<div class="pull-left">
+															<ul class="colors small">
+																<li class="red">
+																	<a href="#"></a>
+																</li>
+																<li class="pink">
+																	<a href="#"></a>
+																</li>
+																<li class="lightgrey">
+																	<a href="#"></a>
+																</li>
+															</ul>
+														</div>
+														<div class="pull-right">
+															<a href="#" rel="tooltip" title="" data-original-title="Add to cart">
+																<i class="fa fa-shopping-cart"></i>
+															</a>
+															<a href="#" rel="tooltip" title="" data-original-title="Add to whishlist">
+																<i class="fa fa-cloud"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+												<!-- /.product -->
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+	
+{% endblock %}
+
+{% block scripts %}
+
+
+<script src="/flat/js/jquery.min.js"></script>
+
+	<!-- Nice Scroll -->
+	<script src="/flat/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+	<!-- imagesLoaded -->
+	<script src="/flat/js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="/flat/js/plugins/jquery-ui/jquery-ui.js"></script>
+	<!-- slimScroll -->
+	<script src="/flat/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="/flat/js/bootstrap.min.js"></script>
+	<!-- Bootbox -->
+	<script src="/flat/js/plugins/bootbox/jquery.bootbox.js"></script>
+	<!-- chosen -->
+	<script src="/flat/js/plugins/chosen/chosen.jquery.min.js"></script>
+	<!-- Theme framework -->
+	{# <script src="/flat/js/eakroko.min.js"></script> #}
+	<!-- Theme scripts -->
+	<script src="/flat/js/application.min.js"></script>
+	<!-- Just for demonstration -->
+	<script src="/flat/js/demonstration.min.js"></script>
+	
+	<script src="/assets/js/local/ajax.js"></script>
+{% endblock %}

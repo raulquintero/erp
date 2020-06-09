@@ -1,0 +1,62 @@
+
+    <div id="left">
+        <form action="search-results.html" method="GET" class='search-form'>
+            <div class="search-pane">
+                <input type="text" name="search" placeholder="Search here...">
+                <button type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </form>
+        {% if  name is defined and name is not empty %}
+        <div class="subnav">
+            <div class="subnav-title">
+                <a href="#" class='toggle-subnav'>
+                    <i class="fa fa-angle-down"></i>
+                    <span>Menu</span>
+                </a>
+            </div>
+
+            <ul class="subnav-menu">
+                <li >
+                    <a href="/car/new">Usuarios</a>
+                </li>
+                <li >
+                    <a href="/car/new">Membresia</a>
+                </li>
+                <li>
+                    <a href="/mycars">View My Cars</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+        <div class="subnav">
+            <div class="subnav-title">
+                <a href="#" class='toggle-subnav'>
+                    <i class="fa fa-angle-down"></i>
+                    <span>My Apps</span>
+                </a>
+            </div>
+            
+            <ul class="subnav-menu">
+                {# <li>
+                    <a href="http://apps.simplicity.local">Search Apps <i class="fa fa-search"></i></a>
+                </li> #}
+                <li>
+                    <a href="//classified.simplicity.local">Classified</a>
+                </li>
+                <li>
+                    <a href="/directisimo">Directisimo</a>
+                </li>
+                <li>
+                    <a href="//finance.simplicity.local">Personal Finance</a>
+                </li>
+                <li>
+                    <a href="//carlogger.simplicity.local">CarLogger</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+

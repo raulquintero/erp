@@ -1,0 +1,62 @@
+{
+  "name": "raulquintero/skeleton-slim",
+  "type": "project",
+  "license": "private",
+  "description": "PHP Slim Framework v1.0 Skeleton With Twig Views, Flash Messages, Eloquent, VarDumper And A Good Folder Organization",
+  "keywords": [
+    "PHP",
+    "Slim",
+    "Framework",
+    "Skeleton",
+    "Twig",
+    "Flash",
+    "VarDumper",
+    "flat template"
+  ],
+  "homepage": "https://gitlab.com/raulquintero",
+  "authors": [
+    {
+      "name": "Raul Quintero",
+      "email": "raulquintero13@gmail.com",
+      "homepage": "http://raulquintero.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "slim/slim": "^3.1",
+    "slim/twig-view": "^2.1",
+    "slim/flash": "^0.1.0",
+    "vlucas/phpdotenv": "^3.0",
+    "symfony/var-dumper": "^3.1",
+    "symfony/console": "^3.3",
+    "monolog/monolog": "^1.21",
+    "illuminate/database": "5.1.*",
+    "runcmf/runtracy": "^0.2.10",
+    "rbdwllr/reallysimplejwt": "^2.0",
+    "firebase/php-jwt": "^5.0",
+    "twig/extensions": "^1.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bundles\\": "src/Bundles/",
+      "Resources\\": "src/Resources/",
+      "Core\\": "../platform/valkiria/core/"
+    },
+    "files": [
+      "../platform/valkiria/bootstrap/helpers.php"
+    ]
+  },
+  "scripts": {
+      "run": [
+          "echo 'Started web server on http://kumai.local:8888'",
+          "php -S kumai.local:8888 -t public",
+          "echo End web server"
+      ],
+      "server": [
+        "echo 'Started web server on http://aut.kumai.local:80'",
+        "php -S auth.local:80 -t public"
+      ]
+  },
+  "require-dev": {
+  }
+}

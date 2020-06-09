@@ -1,0 +1,317 @@
+{% extends 'MainBundle/Templates/templateFlat.twig' %}
+
+{% block styles %}
+    <!-- Bootstrap -->
+    <link
+    href="/flat/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery UI -->
+    <link
+    href="/flat/css/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link
+    href="/flat/css/style.css" rel="stylesheet">
+    <!-- Color CSS -->
+    <link href="/flat/css/themes.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        pre {
+            display: none; /*flex; */
+            font-size: 11px;
+            background-color: #edeef5;
+            padding-left: 12px;
+            border-left: 1px solid gray;
+            border-right: 1px solid gray;
+            margin-bottom: 0;
+        }
+        .showPre {
+            display: contents;
+        }
+        .hideSpinner {
+            /* visibility: hidden; */
+            display: none;
+            width: 20px;
+            height: 20px;
+        }
+        .showSpinner {
+            visibility: visible;
+        }
+        .disclosure {
+            color: rgb(244, 81, 30) !important;
+            font-size: 14px;
+        }
+        .key {
+            color: #0a56a7;
+        }
+        /* .syntax {
+            color: green;
+        } */
+             
+        .elementsArray {
+            color: green !important;
+        }
+        .titleMessage {
+            padding: 4px;
+            display: inline-block;
+            margin: 0;
+            border-bottom: 1px solid #c2a7a7;
+            color: black;
+        }
+        .titleLogs {
+            color: #201f1f;
+            background-color: #b9b9b9;
+            border-top: 1px solid gray;
+            padding-left: 10px;
+            text-align: center;
+            font-weight: bold;
+            /*font-size: large;
+			text-transform: uppercase; */
+        }
+        .titleLog {
+            color: #424242;
+            border: 1px solid #d5d5d5;
+            font-size: 12px;
+            font-family: monospace;
+            padding: 2px;
+            background-color: #fffafa;
+        }
+        .titleLog-gray {
+            background-color: #bababa66;
+        }
+        .titleFatal {
+            color: #fd0707;
+            font-weight: bold;
+            background-color: #ffe1e1b3
+        }
+        .titleWarning {
+            color: #cd7721;
+            font-weight: bold;
+            background-color: #dda43a33;
+        }
+        .fa-fw {
+            font-size: medium;
+        }
+
+        tr:nth-child(even) {
+            background: #E9E9E9
+        }
+        tr:nth-child(odd) {
+            background: #FFF
+        }
+        tr:hover {
+            background-color: #ffff99;
+        }
+
+        .icon-bar {
+            width: 100%;
+            background-color: #555;
+            overflow: auto;
+        }
+
+        .icon-bar a {
+            float: left;
+            width: 20%;
+            text-align: center;
+            padding: 4px 0;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 28px;
+        }
+
+        .icon-bar a:hover {
+            background-color: #000;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid">
+    <div class="page-header">
+            <div class="pull-left">
+                <h1>Device</h1>
+
+            </div>
+            <div class="pull-right">
+                
+                <ul class="stats">
+                    {# <li class='orange'>
+                        <i class="fa fa-fw fa-exclamation-triangle"></i>
+                        <div class="details">
+                            <span class="big">{{ fingerPrint }}</span>
+                            <span>Warnings</span>
+                        </div>
+                    </li>
+                    <li class='lightred'>
+                        <i class="fa fa-times-circle fa-fw text-danger text-5 va-middle"></i>
+                        <div class="details">
+                            <span class="big">{{ totalFatals}}</span>
+                            <span>Fatals</span>
+                        </div>
+                    </li> #}
+                    <li class='blue'>
+                        <i class="fa fa-fw fa-exclamation-triangle"></i>
+                        <div class="details">
+                            <span class="big">{{ fingerprint }}</span>
+                            <span>Token</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumbs">
+        <ul>
+
+            <li>
+                <a href="/info">info</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+
+            <li>
+                <a href="info">device</a>
+            </li>
+        </ul>
+        <div class="close-bread">
+            <a href="#">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="box box-color box-bordered">
+                <div class="box-title">
+                    <h3>
+                        <i class="fa fa-table"></i>
+                        {{ device.type }}
+                    </h3>
+                </div>
+                <div class="box-content nopadding">
+                    <br>
+                    <div class="row">
+                    {% if device.device_type is defined %}
+                        <div class="col-sm-6" style="text-align: center">
+                            <table>
+                                <tr><td>
+                                    <img src="/img/device_{{ device.device_type }}.png" style="width:100px" align="left">
+                                    </td><td style="vertical-align:top;padding-left:10px;padding-top:10px">
+                                    {{ device.oscode }}<br>
+                                    {{ device.brand }}<br>
+                                    {{ device.name }}
+<br>                                    {{ remoteAddr }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-sm-6" style="padding-bottom: 20px">
+                            <table>
+                                <tr><td>
+                                    <img src="/img/{{ device.browser_name|lower }}.ico" style="width:100px" align="left"> <br><br><br><br>
+                                    </td><td style="vertical-align:top;padding-left:10px;padding-top:10px">
+                                    {{ device.browser_name }}<br>
+                                    {{ device.browser_version }}<br>
+                                    {{ device.device_type }}<br>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="box box-color box-bordered">
+                <div class="box-title">
+                    <h3>
+                        <i class="fa fa-table"></i>
+                        Device Details
+                    </h3>
+                </div>
+                <div class="box-content nopadding">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-hover table-nomargin">
+                                {% for key,detail in device %}
+                                    <tr><td>{{ key }} </td><td> {{ detail }}</td></tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-color box-bordered">
+                <div class="box-title">
+                    <h3>
+                        <i class="fa fa-table"></i>
+                        User Details
+                    </h3>
+                </div>
+                <div class="box-content nopadding">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-hover table-nomargin">
+                                {% for key,info in user %}
+                                    <tr><td>{{ key }} </td><td> {{ info }}</td></tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<!-- jQuery -->
+<script src="/flat/js/jquery.min.js"></script>
+<!-- Nice Scroll -->
+<script src="/flat/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+<!-- jQuery UI -->
+<script src="/flat/js/plugins/jquery-ui/jquery-ui.js"></script>
+<!-- slimScroll -->
+<script src="/flat/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Bootstrap -->
+<script src="/flat/js/bootstrap.min.js"></script>
+<!-- Form -->
+<script src="/flat/js/plugins/form/jquery.form.min.js"></script>
+
+<script src="/assets/js/debug_renderjson.js" type="text/javascript"></script>
+
+
+
+
+<!-- imagesLoaded -->
+<script src="/flat/js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+<!-- PageGuide -->
+<script src="/flat/js/plugins/pageguide/jquery.pageguide.js"></script>
+
+<!-- Chosen -->
+<script src="/flat/js/plugins/chosen/chosen.jquery.min.js"></script>
+<!-- select2 -->
+<script src="/flat/js/plugins/select2/select2.min.js"></script>
+<!-- icheck -->
+<script src="/flat/js/plugins/icheck/jquery.icheck.min.js"></script>
+
+<!-- Theme framework -->
+{# <script src="/flat/js/eakroko.min.js"></script> #}
+<!-- Theme scripts --><script src="/flat/js/application.min.js"> </script>
+<!-- Just for demonstration -->
+{# <script src="/flat/js/demonstration.min.js"></script> #}
+
+{% endblock %}
+
+
+
+

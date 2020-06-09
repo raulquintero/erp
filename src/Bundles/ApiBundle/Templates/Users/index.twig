@@ -1,0 +1,378 @@
+{% extends 'MainBundle/Templates/templateFlat.twig' %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">    
+		
+		
+		<!-- Bootstrap -->
+	<link rel="stylesheet" href="/flat/css/bootstrap.min.css">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="/flat/css/plugins/jquery-ui/jquery-ui.min.css">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="/flat/css/style.css">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="/flat/css/themes.css">
+
+
+
+	
+{% endblock %}
+
+{% block main %}
+	<div class="container-fluid">
+		<div class="page-header">
+			<div class="pull-left">
+				<h1>Users</h1>
+			</div>
+			<div class="pull-right">
+				
+			</div>
+		</div>
+		<div class="breadcrumbs">
+			<ul>
+		
+				<li>
+					<a href="//kumai.local">kumai.com</a>
+					<i class="fa fa-angle-right"></i>
+				</li>
+				
+				<li>
+					<a href="more-pricing.html">Users</a>
+				</li>
+			</ul>
+			<div class="close-bread">
+				<a href="#">
+					<i class="fa fa-times"></i>
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				 <div class="pull-right" id="messages"></div>
+                
+        <table class="table table-responsive" id="example" style="width:100%">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nss</th>
+                    <th>nombre</th>
+                    <th>apellido p</th>
+                    <th>apellido m</th>
+                    <th>startdate</th>
+                    <th>status</th>
+                    <th>options</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        </div>
+    <br>
+    <br>
+    <button id="load">load data from database with ajax</button>
+    {% if messages.warning is defined %}
+        {% for message in messages.warning %}
+            <div class="alert alert-warning alert-dismissible show" role="alert">
+                <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                    <span aria-hidden="false">&times;</span>
+                </button>
+                {# <h4 class="alert-heading">Warning!</h4> #}
+                <p>
+                    {{ message }}
+                </p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if messages.success is defined %}
+        {% for message in messages.success %}
+            <div class="alert alert-success alert-dismissible show" role="alert">
+                <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                    <span aria-hidden="false">&times;</span>
+                </button>
+                {# <h4 class="alert-heading">Warning!</h4> #}
+                <p>
+                    {{ message }}
+                </p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+			</div>
+		</div>
+
+		
+	</div>
+		
+{% endblock %}
+
+{% block scripts %}
+
+	<!-- jQuery -->
+	<script src="/flat/js/jquery.min.js"></script>
+	<!-- Nice Scroll -->
+	<script src="/flat/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="/flat/js/plugins/jquery-ui/jquery-ui.js"></script>
+	<!-- slimScroll -->
+	<script src="/flat/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="/flat/js/bootstrap.min.js"></script>
+	<!-- Form -->
+	<script src="/flat/js/plugins/form/jquery.form.min.js"></script>
+
+
+
+
+
+
+
+	<!-- vmap -->
+	<script src="/flat/js/plugins/vmap/jquery.vmap.min.js"></script>
+	<script src="/flat/js/plugins/vmap/jquery.vmap.world.js"></script>
+	<script src="/flat/js/plugins/vmap/jquery.vmap.sampledata.js"></script>
+	<!-- Bootbox -->
+	<script src="/flat/js/plugins/bootbox/jquery.bootbox.js"></script>
+	<!-- Flot -->
+	<script src="/flat/js/plugins/flot/jquery.flot.min.js"></script>
+	<script src="/flat/js/plugins/flot/jquery.flot.bar.order.min.js"></script>
+	<script src="/flat/js/plugins/flot/jquery.flot.pie.min.js"></script>
+	<script src="/flat/js/plugins/flot/jquery.flot.resize.min.js"></script>
+	<!-- imagesLoaded -->
+	<script src="/flat/js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+	<!-- PageGuide -->
+	<script src="/flat/js/plugins/pageguide/jquery.pageguide.js"></script>
+	<!-- FullCalendar -->
+	<script src="/flat/js/plugins/fullcalendar/moment.min.js"></script>
+	<script src="/flat/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+	<!-- Chosen -->
+	<script src="/flat/js/plugins/chosen/chosen.jquery.min.js"></script>
+	<!-- select2 -->
+	<script src="/flat/js/plugins/select2/select2.min.js"></script>
+	<!-- icheck -->
+	<script src="/flat/js/plugins/icheck/jquery.icheck.min.js"></script>
+
+
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+	<!-- Theme framework -->
+	{# <script src="/flat/js/eakroko.min.js"></script> #}
+	<!-- Theme scripts -->
+	<script src="/flat/js/application.min.js"></script>
+	<!-- Just for demonstration -->
+    <script src="/flat/js/demonstration.min.js"></script>
+    
+    <script>
+        var urlDevice = '{{dataServer}}';
+    </script>
+	
+	<script src="/assets/js/local/ajax.js"></script>
+	    <script src="/assets/js/local/listenerHome.js"></script>
+
+    <script>
+    
+    
+
+        $(document).ready(function () {
+
+                $("*").dblclick(function(e){
+                e.preventDefault();
+                });
+            var table = $('#example').DataTable({ // dom: 'Bfrtip',
+                "processing": true,
+                "serverSide": true,
+                "deferRender": true,
+                "ResetDisplay": false,
+                //"dom": '<"toolbar">frtip',
+                "fnDrawCallback": function (data) { 
+                    {# console.log(data.json); #}
+                    console.log('// request');
+                    $('#messages').text('last update: ' + data.json.last_update + "\t ");
+                
+                },
+                "rowCallback": function( row, data){
+                    if (!data.status){
+                        $('td',row).addClass( 'bg-warning' );
+                    }
+                },
+                "ajax": {
+                    "url": '{{dataServer}}/users/datatable',
+                    "dataType": 'json',
+                    "type": "GET",
+                    "beforeSend": function (xhr) {
+						console.log('xhr');
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa('storeObject.user' + ":" + 'storeObject.password'));
+                    }
+                },
+                "columns": [
+                    {
+                        "data": "id"
+					}, 
+					{
+                        "data": "nss",
+                        "render": function (data, type, full, meta) {
+                            // console.log('data',full,type,full,meta);
+                            return '<a href="{{dataServer}}/users/' + data + '">' + full.nss + '</a>';
+                        }
+					}, 
+					{
+                        "data": "first_name",
+                        "render": function (data, type, full, meta) {
+                            return '<button data-id="' + full.id + '" class="btn btn-link btn-employee">' + data + '</button>';
+                        }
+					}, 
+					{
+                        "data": "middle_name"
+					}, 
+					{
+                        "data": "last_name", // can be null or undefined
+                        "defaultContent": "<i>Not set</i>"
+                    },
+                    // {"data": "salary",
+                    // "render": $.fn.dataTable.render.number( ',', '.', 2, '$' )
+                    // },
+                    {
+                        "data": "start_date",
+                        "render": function (data, type, row) {
+                            var dateSplit = data.split('-');
+                            var months = [
+                                'Ene',
+                                'Feb',
+                                'Mar',
+                                'Abr',
+                                'May',
+                                'Jun',
+                                'Jul',
+                                'Ago',
+                                'Sep',
+                                'Oct',
+                                'Nov',
+                                'Dic'
+                            ];
+                            return type === "display" || type === "filter" ? dateSplit[2] + '-' + months[Number(dateSplit[1]) - 1] + '-' + dateSplit[0] : data;
+                        }
+                    },
+                     {
+                        "data": "status",
+                        "render": function (data, type, full, meta) {
+                            if (data) {
+                                var text = '<span class="glyphicon glyphicon-ok text-success "></span>';
+                            } else {
+                                var text = '<span class="glyphicon glyphicon-ban-circle text-warning "></span>';
+                            }
+                            return text; // '<a href="http://skeleton.local/employee/'+ full.id+'">'+ data +'</a>';
+                        }
+                    }, {
+                        "data": null,
+                        "render": function (data, type, full, meta) {
+                            if (full.status) {
+                                var btn_status = '<button data-id="' + full.id + '" class="btn btn-warning btn-status">disable</button> ';
+                            } else {
+                                var btn_status = '<button data-id="' + full.id + '" class="btn btn-success btn-status">enable</button> ';
+                            }
+                            return btn_status + '<button data-id="' + full.id + '" class="btn btn-danger btn-delete">Delete</button>';
+                        }
+                    }
+                ]
+            });
+
+            $('#reload').click(function () {
+                document.getElementById('reload-icon').classList.add('glyphicon-refresh-animate');
+                this.style.cursor = 'wait';
+                //table.ajax.reload(genericHandler);
+                table.draw(false);
+            });
+            $('#logout').click(function () {
+                this.style.cursor = 'wait';
+                window.location.href = "/logout";
+
+            });
+            $('#example tbody').on('click', 'img.icon-delete', function () {
+                // console.log($(this).parents('tr')[0] );
+                // table
+                // .row( $(this).parents('tr') )
+                // .remove();
+                // table.draw();
+                $(this).parents('tr')[0].hidden = true;
+            });
+            $(".dataTables_filter input").unbind().bind('keyup change', function (e) {
+                if (e.keyCode == 13 || this.value == "" || this.value.length > 3) {
+                    table.search(this.value).draw();
+                }
+            });
+            $('#example tbody').on('click', 'button.btn-delete', function () {
+                console.log('tr', $(this).parents('tr')[0]);
+                let id = this.getAttribute("data-id");
+                var r = confirm("Are Your Sure?");
+                if (r == true) {
+                    params = {
+                        'id': id
+                    }
+                    sendPetition(params, urlDevice + '/employee/delete', deleteKeyHandler);
+                }
+            });
+            $('#example tbody').on('click', 'button.btn-status', function (event) {
+                if (isDoubleClicked($(this))) return;
+                this.style.cursor = 'wait';
+                console.log('tr', $(this).parents('tr')[0]);
+                let id = this.getAttribute("data-id");
+                params = {
+                    'id': id
+                }
+                sendPetition(params, urlDevice + '/employee/status/change', genericHandler);
+            });
+
+            $('#example tbody').on('click','button.btn-employee', function(){
+                let id = this.getAttribute("data-id");
+                params = {
+                    'id': id
+                }
+                console.log('// show employee');
+                sendPetition(params, urlDevice + '/employee', employeeHandler);
+
+            })
+            function deleteKeyHandler(result) {
+                document.getElementById('messages').innerHTML = 'Item was deleted';
+                table.row($(this).parents('tr')).remove().draw();
+                $(this).parents('tr').hidden = true;
+            }
+            function reloadHandler(result) {
+                document.getElementById('reload').style.cursor = 'default';
+            }
+            function employeeHandler(){
+                console.log('showed employee');
+            }
+            function genericHandler(result) {
+                document.getElementById('reload-icon').classList.remove('glyphicon-refresh-animate');
+                //document.getElementById('messages').innerHTML = '<div class="alert alert-success">Success</div>';
+                //table.fnStandingRedraw();
+                table.draw(false);
+                document.getElementById('reload').style.cursor = 'default';
+            }
+            function isDoubleClicked(element) {
+                console.log('if', element.data("isclicked") )
+                //if already clicked return TRUE to indicate this click is not allowed
+                if (element.data("isclicked")) return true;
+                console.log('if2', element.data("isclicked") )
+
+                //mark as clicked for 1 second
+                element.data("isclicked", true);
+                setTimeout(function () {
+                    element.removeData("isclicked");
+                    console.log('unlocked doubleClick');
+                }, 10000);
+
+                //return FALSE to indicate this click was allowed
+                return false;
+            }   
+            setInterval(function () {
+                table.draw(false)
+            
+            }, 15000);
+        
+        $("div.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
+        
+        });
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends 'LoggerBundle/Templates/templateFlat.twig' %}
+
+{% block styles %}
+    <!-- Bootstrap -->
+	<link rel="stylesheet" href="/flat/css/bootstrap.min.css">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="/flat/css/plugins/jquery-ui/jquery-ui.min.css">
+	<!-- Fullcalendar -->
+	<link rel="stylesheet" href="/flat/css/plugins/fullcalendar/fullcalendar.css">
+	<link rel="stylesheet" href="/flat/css/plugins/fullcalendar/fullcalendar.print.css" media="print">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="/flat/css/style.css">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="/flat/css/themes.css">
+
+
+
+{% endblock %}
+
+{% block leftMenu %}
+		{% include 'SetupBundle/Templates/Components/leftCalendar.twig' %}
+    {% endblock %}
+
+{% block main %}
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="pull-left">
+                <h1>Schedule</h1>
+
+            </div>
+            <div class="pull-right">
+                
+                <ul class="stats">
+                    <li class='orange'>
+                        <i class="fa fa-fw fa-exclamation-triangle"></i>
+                        <div class="details">
+                            <span class="big">5</span>
+                            <span>Pending</span>
+                        </div>
+                    </li>
+              
+                    <li class='blue'>
+                        <i class="fa fa-fw fa-exclamation-triangle"></i>
+                        <div class="details">
+                            <span class="big">10</span>
+                            <span>Total Events</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="breadcrumbs">
+            <ul>
+
+                <li>
+                    <a href="//kumai.local">kumai.com</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+
+                <li>
+                    <a href="more-pricing.html">Logger</a>
+                </li>
+            </ul>
+            <div class="close-bread">
+                <a href="#">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="box">
+                    <div class="box-title">
+                        <h3>
+                            <i class="fa fa-calendar"></i>
+                            Calendar
+                        </h3>
+                    </div>
+                    <div class="box-content nopadding">
+                        <div class="calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+            
+        
+    </div>
+
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    <!-- jQuery -->
+	<script src="/flat/js/jquery.min.js"></script>
+
+	<!-- Nice Scroll -->
+	<script src="/flat/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+	<!-- imagesLoaded -->
+	<script src="/flat/js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="/flat/js/plugins/jquery-ui/jquery-ui.js"></script>
+	<!-- slimScroll -->
+	<script src="/flat/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="/flat/js/bootstrap.min.js"></script>
+	<!-- Bootbox -->
+	<script src="/flat/js/plugins/bootbox/jquery.bootbox.js"></script>
+	<!-- FullCalendar -->
+	<script src="/flat/js/plugins/fullcalendar/moment.min.js"></script>
+	<script src="/flat/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+
+	<!-- Theme framework -->
+	<script src="/flat/js/eakroko.min.js"></script>
+	<!-- Theme scripts -->
+	<script src="/flat/js/application.min.js"></script>
+	<!-- Just for demonstration -->
+	<script src="/flat/js/demonstration.min.js"></script>
+
+	<!--[if lte IE 9]>
+		<script src="/flat/js/plugins/placeholder/jquery.placeholder.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('input, textarea').placeholder();
+			});
+		</script>
+	<![endif]-->
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico" />
+	<!-- Apple devices Homescreen icon -->
+	<link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-precomposed.png" />
+
+
+
+
+
+{% endblock %}

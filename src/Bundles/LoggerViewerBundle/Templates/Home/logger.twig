@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {# <link rel="stylesheet" href="styles.css"> #}
+  <!-- Bootstrap -->
+    <link
+    href="/flat/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
+  <title>Logger</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: grid;
+            grid-template-columns: minmax(min-content,max-content) 1fr;
+            grid-template-areas:
+                "navbar navbar"
+                "event-count event-count"
+                "event-history-log event-history-details";
+        }
+
+        .navbar {
+            display: flex;
+            position: relative;
+            align-items: center;
+            width: 100%;
+            min-width: 40px;
+            height: 40px;
+            background-color: #333333;
+            color: whitesmoke;
+            font-family: Arial, Helvetica, sans-serif;
+            grid-area: navbar;
+        }
+
+        .brand-logo {
+            background-image: url('ubuntu.png');
+            background-size: 30px 30px;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 0 20px;
+        }
+
+        .image-circle {
+            position: absolute;
+            margin: 0 20px;
+            right: 0;
+            border-radius: 53%;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 3px solid #fff5;
+            line-height: normal;
+            display: inline-block;
+            line-height: 23px;
+        }
+
+        .history-log-selector {
+            width: 387px;
+            grid-area: history-log-selector;
+            position: sticky;
+            display: flex;
+            top: 100px;
+            height: 40px;
+            border-radius: 0;
+            box-sizing: border-box;
+        }
+
+
+        .event-count {
+            grid-area: event-count;
+            position: sticky;
+            width: 100%;
+            height: 100px;
+            color: whitesmoke;
+            display: flex;
+            align-items: center;
+            top: 0px;
+            /* margin-left: -9px; */
+            margin-right: 17px;
+            background: white;
+
+        }
+
+        .event-details {
+            height: 50px;
+            width: 100%;
+            background-color: lightgray;
+            cursor: pointer;
+        }
+
+        .details-radio {
+            display: none;
+        }
+
+        .details-radio:checked + .event-details {
+            height: 100px;
+        }
+
+        .event-details {
+            margin: 10px 0;
+        }
+
+        .menu-toggle {
+            filter: invert(1);
+            margin: 0 10px;
+        }
+
+        .event-type {
+            height: 80px;
+            width: 132px;
+            margin: 0 10px;
+            /*text-align: right;*/
+            padding-right: 10px;
+            color: white;
+        }
+
+        .event-type a {
+            color: white;
+        }
+
+        .total {
+            background-color: #4B8DDA;
+        }
+
+        .error {
+            background-color: #D54942;
+        }
+
+        .warning {
+            background-color: #EDA642;
+        }
+
+        .warning-log-img {
+            width: 15px;
+            height: 15px;
+        }
+
+        .error-log-img {
+            width: 15px;
+            height: 15px;
+        }
+
+        .event-list{
+            list-style: none;
+            margin:0;
+            overflow-y: auto;
+            height: calc(100vh - 180px);
+            padding-inline-start: 0;
+            border: 1px solid #d5d5d5;
+            box-sizing: border-box;
+        }
+
+        .list-header {
+            background-color: lightgray;
+        }
+
+        .list-headers{
+            position: sticky;
+            top:0;
+            z-index: 10;
+        }
+
+        .event-log {
+            width: 100%;
+            display: flex;
+            box-sizing: border-box;
+            justify-content: space-between;
+            /*border-bottom: 1px solid #d5d5d5;*/
+        }
+
+        .list-id, .list-type {
+            flex-grow: 1;
+            display: flex;
+            justify-content: right;
+        }
+
+        .list-id {
+            min-width: 46px;
+        }
+
+        .number-log{
+            font-size: 36px;
+        }
+
+        .list-type{
+            min-width: 60px;
+        }
+
+        .list-msg {
+            flex-grow: 10;
+            display: flex;
+            justify-content: center;
+        }
+
+
+        .event-history-log {
+            box-sizing: border-box;
+            width: 475px;
+            height: calc(94vh - 0px);
+            grid-area: event-history-log;
+            /* padding: 0 10px; */
+            overflow-y: scroll;
+
+        }
+
+        .event-history-details {
+            grid-area: event-history-details;
+            height: calc(94vh - 0px);
+            overflow-y: scroll;
+        }
+
+        /****************************************/
+
+        pre {
+                    display: none; /*flex; */
+                    font-size: 11px;
+                    background-color: #edeef5;
+                    padding-left: 12px;
+                    border-left: 1px solid gray;
+                    border-right: 1px solid gray;
+                    margin-bottom: 0;
+                }
+                .showPre {
+                    display: contents;
+                }
+                .hideSpinner {
+                    /* visibility: hidden; */
+                    display: none;
+                    width: 20px;
+                    height: 20px;
+                }
+                .showSpinner {
+                     visibility: visible; 
+                }
+                .disclosure {
+                    color: rgb(244, 81, 30) !important;
+                    font-size: 14px;
+                }
+                .key {
+                    color: #0a56a7;
+                }
+                .elementsArray {
+                    color: green !important;
+                }
+                .numberLog{
+                    background-color: rgb(157, 219, 254); 
+                    border-left: 1px solid gray;
+                    border-right: 1px solid gray;
+                    border-bottom: 1px solid gray;
+                    position: relative; 
+                    left: -14px; 
+                }
+                .selectedLog {
+                    background-color: rgb(157, 219, 254);
+                }
+
+                .titleMessage {
+                    padding: 4px;
+                    display: inline-block;
+                    margin: 0;
+                    border-bottom: 1px solid #c2a7a7;
+                    color: black;
+                }
+                .titleLogs {
+                    color: #201f1f;
+                    background-color: #b9b9b9;
+                    border-top: 1px solid gray;
+                    padding-left: 10px;
+                    text-align: left;
+                    font-weight: bold;
+                    font-family: 'Open Sans', sans-serif,monospace;
+                    font-size: 12px;
+                    /*font-size: large;
+                    text-transform: uppercase; */
+                }
+                .titleLog {
+                    color: #424242;
+                    border: 1px solid #d5d5d5;
+                    font-size: 12px;
+                    font-family: 'Open Sans', sans-serif,monospace;
+                    padding: 2px;
+                    background-color: #fffafa;
+                }
+                .titleLog-gray {
+                    background-color: #bababa66;
+                }
+                .titleFatal {
+                    color: #fd0707;
+                    font-weight: bold;
+                    background-color: #ffe1e1b3
+                }
+                .titleWarning {
+                    color: #cd7721;
+                    font-weight: bold;
+                    background-color: #dda43a33;
+                }
+                .fa-fw {
+                    font-size: medium;
+                }
+
+                tr:nth-child(even) {
+                    background: #E9E9E9
+                }
+                tr:nth-child(odd) {
+                    background: #FFF
+                }
+                tr:hover {
+                    background-color: #ffff99;
+                }
+
+                .icon-bar {
+                    width: 100%;
+                    background-color: #555;
+                    overflow: auto;
+                }
+
+                .icon-bar a {
+                    float: left;
+                    width: 20%;
+                    text-align: center;
+                    padding: 4px 0;
+                    transition: all 0.3s ease;
+                    color: white;
+                    font-size: 28px;
+                }
+
+                .icon-bar a:hover {
+                    background-color: #000;
+                }
+
+                .active {
+                    background-color: #4CAF50;
+                }
+                .navbar{
+
+                margin-bottom: 0px;
+                }
+
+    </style>
+
+</head>
+<body>
+
+<nav class="navbar">
+    <span class="brand-logo">
+    </span>
+    <span class="tool-name">
+        Logger
+    </span>
+    <a class="menu-toggle" href="#">
+        <img class="menu-img" src="menu.svg">
+    </a>
+    <span>
+        Dashboard
+    </span>
+    {# <span class="image-circle"></span> #}
+    <div class="user">
+        <ul class="icon-nav">
+            {% if  name is defined and name is not empty %}
+            <a href="#" class='dropdown-toggle' data-toggle="dropdown" style="margin-top: 2px">
+                <img class="image-circle" src="/img/noimage.jpg" "demo/user-avatar.jpg" alt="Raul Quintero"
+                    style="padding-top: 0px; width: 39px;height:39px">&nbsp;
+            </a>
+            <ul class="dropdown-menu pull-right">
+                <li class="dropdown"
+                    style="color: white;padding-top: 6px; padding-left:8px; padding-bottom:6px; background-color: #888; width: 100%; font-weight: bold;">
+                    {{ name | ucwords}}</li>
+                <li><a href1="/profile">Profile</a></li>
+                <li><a href1="/settings">Account settings</a></li>
+                <li><a href="http://simplicity.local">goto simplicity.com</a></li>
+                <li><a href="/logout">Sign out</a></li>
+            </ul>
+            {% else %}
+            <li class="dropdown" id="login" style="color: white; padding-top: 2px">
+                <a onclick="openLogin();" style="color:white; border: 1px solid #336699; line-height: 18px; "
+                    class="btn btn-green btn-lg">
+                    <i class="fa fa-sign-in fa-5"></i> Log In
+                </a>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="http://simplicity.local">goto simplicity.com</a>
+                    </li>
+                    <li>
+                        <a href="/login">Log In</a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<script>
+    var counterLogs = 0;
+    var id = 0;
+    document.onclick = function (event) {
+
+        if (event === undefined) 
+            event = window.event;
+        
+        var target = 'target' in event ? event.target : event.srcElement;
+        if (event.button == 0) {
+            switch (target.id) {
+
+                case 'view':
+                    let log = target.getAttribute("data-log");
+                    id = document.getElementById('id' + log).innerHTML; 
+                    console.table('logDetails', log, id);
+                    document.getElementById('id' + log).classList.add('selectedLog');
+                    // document.getElementById('id' + log).style.backgroundColor = '#9ddbfe';
+                    showLogs(log);
+                    break;
+                case 'clearLogs':
+                    clearLogs();
+                    break;
+            }
+        }
+    }
+
+    function showLogs(log) {
+        let logDiv = document.getElementById('logData');
+
+
+        log = document.getElementById(log);
+
+        console.log(logDiv);
+
+        renderJson(atob(log.innerHTML));
+        window.location.href = '#bottomEnd';
+
+    }
+
+    function renderJson(result) {
+        result = JSON.parse(result);
+        console.log('respuesta', result);
+        let logsDiv = document.getElementById("logData");
+        // logsDiv.appendChild(renderjson(result));
+
+        var g = document.createElement('div');
+        g.innerHTML = '<span class="numberLog">&nbsp;  ' + id + ' &nbsp;</span>&nbsp; date: ' + result.date + " -- " + 'warnings: ' + result.warnings + " -- " + 'fatals: ' + result.fatals + '<br>\
+        <span style="font-size:12px; font-weight: normal; margin-left: 48px;">' + result.title + '<br>';
+        g.classList.add('titleLogs');
+        // logsDiv.innerHTML =  'date: ' + result.date +'\n\r' + 'warnings: ' + result.warnings +'\n\r' + 'fatals: ' + result.fatals;
+        logsDiv.appendChild(g);
+        for (var log in result) {
+            console.log('resultLog', result[log]);
+            let obj = result[log];
+            if (typeof obj.type != 'undefined') {
+                logsDiv.appendChild(renderjson(result[log]));
+            }
+        };
+    }
+
+    function showLogsClick(element) {
+        console.log('element', element);
+        var preElements = document.getElementsByTagName('pre');
+
+        if (preElements[element].style.display == 'flex') {
+            preElements[element].style.display = 'none';
+        } else {
+            preElements[element].style.display = 'flex';
+        }
+
+        console.log(preElements[element].style.display);
+
+    }
+
+    function clearLogs() {
+        let logsDiv = document.getElementById("logData");
+
+        document.querySelectorAll(".selectedLog").forEach(function(el){
+            el.classList.remove("selectedLog");
+        })
+
+        // [].forEach.call( document.querySelectorAll(".selectedLog"), function(el) {
+        // });
+        logsDiv.innerHTML = '';
+        counterLogs = 0;
+    }
+</script>			
+
+<aside class="event-history-log">
+    <section class="event-count" style="background-color: #3b3b3b;">
+        <a href="/logger/view">
+            <ul class="event-type total">
+                <li class="event-log "><span class="list-id number-log">{{ totalLogs }}</span></li>
+                <li class="event-log "><span class="list-id">Total Logs</span></li>
+            </ul>
+        </a>
+
+        <a href="/logger/view/fatals">
+            <ul class="event-type error">
+                <li class="event-log "><span class="list-id number-log">{{ totalFatals }}</span></li>
+                <li class="event-log "><span class="list-id">Errors</span></li>
+            </ul>
+        </a>
+        <a href="/logger/view/warnings">
+            <ul class="event-type warning">
+                <li class="event-log "><span class="list-id number-log">{{ totalWarnings }}</span></li>
+                <li class="event-log "><span class="list-id">Warnings</span></li>
+            </ul>
+        </a>
+    </section>
+    <table>
+    <tr><td>
+    <select class="history-log-selector" style="background-color: #383737;color: white; border-color: black;padding-left: 5px;">
+        <option value="1">authServer</option>
+        <option value="1">userAgent</option>
+        <option value="1">api</option>
+        <option value="1">mainBundle</option>
+    </select>
+    </td><td>
+    <button style="width: 71px;
+    height: 40px;
+    color: white;
+    background-color: black;
+    border: 1px solid;
+    border-color: gray;">Ajustes</button>
+    </td></tr>
+    </table>
+    <table class="table  table-no-more table-bordered mb-0" style="width: 100%; ">
+        {% set item = 0 %}
+        {% for log in logs %}
+        {% set item = item + 1 %}
+        <tr>
+            <td data-log="log{{ item }}" id="idlog{{ item }}" valign="top">{{ 1 + totalLogs - item}}</td>
+            <td>
+    
+                {% if not log.warnings and  not log.fatals %}
+                <i class="fa fa-fw fa-info-circle text-info  "></i>
+                {% endif %}
+    
+                {% if log.warnings and not log.fatals %}
+                <i class="fa fa-fw fa-exclamation-triangle text-warning" data-log="log{{ item }}" id="view"></i>
+                {% endif %}
+                {% if log.fatals %}
+                <i class="fa fa-times-circle fa-fw text-danger text-5 va-middle" data-log="log{{ item }}" id="view"></i>
+    
+                {% endif %}
+            </td>
+            <td data-log="log{{ item }}" id="view" style="font-family: monospace;font-size: 10.6px;font-weight: 400;">
+                <b>{{ log.dateTime }}</b>
+                {{ log.serviceTag }}
+                <br>
+                {{ log.url|length > 80 ? log.url|slice(0, 50) ~ '...' : log.url  }}
+                {# <td><button id="view" class="btn btn-primary" data-log="log{{ item }}">View</button></td> #}
+                <textarea id="log{{ item }}" style="width: 100%; display: none">{{ log.log}}</textarea>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</aside>
+<main class="event-history-details">
+    <div style="margin-left: 20px;margin-top:20px;">Select a log to show the details
+        <button id="clearLogs" class="btn btn-warning">Clear</button></div><br>
+    <div class="box" id="logData"></div>
+    <br>
+    <div style="height:400px"></div>
+    <a name="bottomEnd"></a>
+
+</main>
+  
+<script src="/assets/js/debug_renderjson.js" type="text/javascript"></script>
+<script src="/assets/js/local/ajax.js"></script>
+
+{% if authServer  is defined %}
+<script> const urlTest = '{{ authServer }}'</script>
+{% endif %}
+<script src="{{ authServer }}/assets/js/remote/init.js"></script>
+
+</body>
+</html>

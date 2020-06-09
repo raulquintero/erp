@@ -1,0 +1,313 @@
+{% extends 'MainBundle/Templates/templateFlat.twig' %}
+
+{% block styles %}
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="/flat/css/bootstrap.min.css">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="/flat/css/plugins/jquery-ui/jquery-ui.min.css">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="/flat/css/style.css">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="/flat/css/themes.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/wow-alert.css">
+    <style>
+        .tabla {
+            height: 500px;
+            background-color: white;
+            margin-left: 0;
+            margin-right: 0;
+
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+		}
+		th{
+			text-align:left;
+		}
+
+        body,
+        html {
+            height: 94%;
+            background-color: #555;
+            /* color: white; */
+        }
+
+        .fill {
+            min-height: 100%;
+        }
+       #content.container-fluid.nav-fixed {
+            padding-top: 30px;
+        }
+
+
+        .container-fluid {
+            /* margin-top: 30px; */
+            /* background-color: #555; */
+            /* color: white; */
+        }
+        .container {
+            margin-top: 30px;
+            padding:0px;
+            margin:0px;
+            background-color: #f2f9e8;
+            color: white;
+            width:auto;
+        }
+        .bg-footer {
+            color: white;
+            background-color: #368ee0;
+        }
+        .bottom-padding{
+            padding-top:0px;
+            padding-bottom:0px;
+        }
+        .buttons{
+            margin-top:10px;
+            padding: 1px;
+        }
+        .listproductos{
+            margin-top:-20px;
+            height:440px;
+        }
+        #bottomTicket{
+            color: black;
+        }
+
+         @media screen and (max-width: 767px) {
+            .tabla {
+                height: 460px;
+                margin-left: 10px;
+                margin-right: 10px;
+                background-color: white;
+            }
+            .listproductos{
+                margin-top:-20px;
+                height:400px;
+            }
+        }
+    </style>
+		 <style>
+		 .datar{
+            color: white;
+		 }
+
+		 .celda{
+			 color: black;
+		 }
+        .tabla {
+            height: 500px;
+            background-color: white;
+            margin-left: 0;
+            margin-right: 0;
+
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+        }
+
+        body,
+        html {
+            height: 94%;
+            background-color: #333;
+            /* color: white; */
+        }
+
+        .fill {
+            min-height: 100%;
+        }
+       
+
+
+        .container-fluid {
+            /* margin-top: 30px; */
+            /* background-color: #555; */
+            /* color: white; */
+        }
+        .container {
+            margin-top: 30px;
+            padding:0px;
+            margin:0px;
+            background-color: #f2f9e8;
+            color: white;
+            width:auto;
+        }
+       
+        .buttons{
+            margin-top:10px;
+            padding: 1px;
+        }
+        .listproductos{
+            margin-top:-20px;
+            height:440px;
+        }
+        #bottomTicket{
+            color: black;
+        }
+
+         @media screen and (max-width: 767px) {
+            .tabla {
+                height: 460px;
+                margin-left: 10px;
+                margin-right: 10px;
+                background-color: white;
+            }
+            .listproductos{
+                margin-top:-20px;
+                height:400px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+
+<div class="container-fluid text-center bottom-padding" style="background: #333">
+	<div class="page-header">
+    </div>
+	<div class="row content">
+		<div class="col-sm-8">
+			<div class="tabla">
+				<div class="container fill">
+					<div id="detalleTicket2" class="box-content nopadding" style="overflow-y:none;">
+						<table id="mytable2" class="table table-hover table-striped table-nomargin table-borderedeee ">
+							<thead>
+								<tr>
+									<th style="background:lightgreen;color:#444444;">Producto</th>
+									<th class="hidden-480" style="background:lightgreen;color:#444444">Color y Talla</th>
+									<th style="background:lightgreen;color:#444444">Precio</th>
+									<th style="background:lightgreen;color:#444444">Total</th>
+									<th style="background:lightgreen;color:#444444">&nbsp;</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div id="detalleTicket" class="box-content nopadding listproductos" style="overflow-y:scroll;">
+						<table id="mytable" class="table table-hover table-striped table-nomargin table-borderedeee ">
+
+							<tbody id="products"></tbody>
+						</table>
+						<div id="bottomTicket">
+
+							<h2>Total: $
+								<span id="stotal1">0</span>.00</h2>
+							<br><br><br></div>
+					</div><br>
+				</div>
+				<!-- This one wants to be 100% height -->
+			</div>
+			<div class="buttons hidden-xs">
+				<button type="button" class="btn btn-primary btn-lg">$ 20.00</button>
+				<button type="button" class="btn btn-primary btn-lg">$ 50.00</button>
+				<button type="button" class="btn btn-primary btn-lg">$ 100.00</button>
+				<button type="button" class="btn btn-primary btn-lg">$ 200.00</button>
+				<button type="button" class="btn btn-primary btn-lg">$ 500.00</button>
+				<button type="button" class="btn btn-primary btn-lg">Tarjeta</button>
+				<button type="button" class="btn btn-primary btn-lg">Credito</button>
+				<button type="button" class="btn btn-primary btn-lg">Info</button>
+
+			</div>
+		</div>
+		<div class="col-sm-4 text-left datar">
+
+			<h4>Juan Antonio<br>Martinez Lopez</h4>
+			<hr>
+			<table width="100%">
+				<tr>
+					<td>
+						<h3>subTotal</h3>
+					</td>
+					<td align="right">
+						<h3>
+							<span id="stotal2">0</span>.00</h3>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h3>Envio</h3>
+					</td>
+					<td align="right">
+						<h3>0.00</h3>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h3>Impuesto</h3>
+					</td>
+					<td align="right">
+						<h3>0.00</h3>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h2>Total</h2>
+					</td>
+					<td align="right">
+						<h1>$
+							<span id="gtotal">0</span>.00</h1>
+					</td>
+				</tr>
+			</table>
+
+			<hr>
+			<button type="button" class="btn btn-warning btn-lg btn-block">Pagar EFECTIVO</button>
+
+
+			<hr>
+			<h1>welcome</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+
+		</div>
+
+	</div>
+
+</div>
+
+   <footer class="container-fluid navbar-fixed-bottom bg-footer">
+            Capture Codigo
+        <input id="id" class="form-control" id="inputdefault" type="text">
+        
+
+
+        </footer>
+{% endblock %}
+
+{% block scripts %}
+
+	<script>
+		server = '{{dataServer}}';
+	</script>
+	<script src="/flat/js/jquery.min.js"></script>
+	<!-- Nice Scroll -->
+	<script src="/flat/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+	<!-- imagesLoaded -->
+	<script src="/flat/js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="/flat/js/plugins/jquery-ui/jquery-ui.js"></script>
+	<!-- slimScroll -->
+	<script src="/flat/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="/flat/js/bootstrap.min.js"></script>
+	<!-- Bootbox -->
+	<script src="/flat/js/plugins/bootbox/jquery.bootbox.js"></script>
+	<!-- chosen -->
+	<script src="/flat/js/plugins/chosen/chosen.jquery.min.js"></script>
+	<!-- Theme framework -->
+	{# <script src="/flat/js/eakroko.min.js"></script> #}
+	<!-- Theme scripts -->
+	<script src="/flat/js/application.min.js"></script>
+	<!-- Just for demonstration -->
+	<script src="/flat/js/demonstration.min.js"></script>
+	
+	<script src="/assets/js/local/ajax.js"></script>
+
+<script src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/wow-alert.js"></script>
+<script type="text/javascript" src="/assets/js/wow-example.js"></script>
+
+{% endblock %}

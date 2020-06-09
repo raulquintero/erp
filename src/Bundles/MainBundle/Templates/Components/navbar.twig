@@ -1,0 +1,269 @@
+
+<div class="navbar-fixed-top" id="navigation">
+    <div class="container-fluid" ide="loader" style="z-index: -1; background-color: #204e81; padding:8px">
+        <a href="/" id="company">{{ remoteUser.storeName }} </a> 
+            
+        <div class="user" style="margin-top: 3px;">
+            <ul class="icon-nav">
+
+
+                {% if  remoteUser.isLogged is defined and remoteUser.isLogged  == true %}
+                <li class="dropdown">
+                    <a href="/message-center" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon-bell"></i>
+                        <span class="label label-lightred">4</span>
+                    </a>
+                    <ul class="dropdown-menu pull-right message-ul">
+                        <li>
+                            <a href="#">
+                                <span><i class="glyphicon-message_new"></i></span>
+                                <div class="details">
+                                    <div class="name">Message Center</div>
+                                    <div class="message">
+                                        2 unreaded messages
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span><i class="glyphicon-shopping_cart"></i></span>
+                                {# <img src="img/demo/user-2.jpg" alt=""> #}
+                                <div class="details">
+                                    <div class="name">Cart</div>
+                                    <div class="message">
+                                        1 Item<br>
+                                        Total: $556.00 MX
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                {# <img src="img/demo/user-3.jpg" alt=""> #}
+                                <div class="details">
+                                    <div class="name">Bob Doe</div>
+                                    <div class="message">
+                                        Excepteur Duis magna dolor!
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/clear-notifications" class="more-messages">Clear Notifications
+                                <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                    <li class='dropdown colo'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown" rel="tooltip" data-placement="bottom" data-original-title="Aplicaciones">
+							<i class="glyphicon-show_thumbnails"></i>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							
+                            {% for app in appsList %}
+                            <li><a href="http://{{ app.domain }}">{{ app.store_name }}</a></li>
+                            {% endfor %}
+                           
+						</ul>
+					</li>
+                    {% endif %}
+                    
+            </ul>
+            <ul class="icon-nav">
+
+              
+
+                {% if  remoteUser.isLogged is defined and remoteUser.isLogged  == true %}
+                    <a
+                        class='dropdown-toggle' data-toggle="dropdown" href="#" style="margin-top: 2px">
+                        {# <span class="letterCircle">R</span> #}
+                        <img "demo/user-avatar.jpg" alt="Raul Quintero" src="/img/demo/locked.jpg" class="imageCircle" style="padding-top: 0px; height:37px">&nbsp;
+                        {# <img src="/img/verified2.png" height="20" alt="" style="margin-top: 7px">&nbsp;&nbsp; #}
+                    </a>
+                    <ul class="dropdown-menu pull-right" style="padding-top: 0px;">
+                        <li class="dropdown" style="min-width: 220px;widthcolor: white;padding-top: 6px; padding-left:8px; padding-bottom:6px; padding-right: 6px; background-color: #d8d7d7; 
+                                width: 100%; fonti-weight: bold; text-align:center;">
+                                <img "demo/user-avatar.jpg" alt="Raul Quintero" src= "/img/demo/locked.jpg" "/img/noimage.jpg" class="imageCircle" style="padding-top: 0px; height:59px">
+                        <li class="dropdown" style="widthcolor: white;padding-top: 6px; padding-left:8px; padding-bottom:6px; padding-right: 6px; background-color: #d8d7d7; 
+                                width: 100%; fonti-weight: bold; text-align:center;">
+                                <b>{{  remoteUser.middleName | ucwords }} {{  remoteUser.lastName | ucwords }} </b>
+                               <p style="font-size: 12px; color: gray"> {{ remoteUser.username | lower}} <p>
+                        </li>
+                        <li>
+                            <a href="//{{ accountsServer }}/profile">Profile</a>
+                        </li>
+                        <li>
+                            <a href="http://{{ accountsServer }}">Account settings</a>
+                        </li>
+                        <li>
+                            <a href="http://{{ accountsServer }}/devices">Devices</a>
+                        </li>
+                        <li>
+                            <button class="btn btn-danger" style="width: 211px; margin-left: 4px;" onclick="window.location.href = '{{ authServer }}/logout';">sign Out</button>
+                            {# <a href="{{ authServer }}/logout">Sign out</a> #}
+                        </li>
+                    </ul>
+
+                {% else %}
+                    <li class="dropdown" id="login" style="color: white; padding-top: 2px">
+                        <iframe id="buttonLogin" src="http://portero.tizoc.local/login-button/{{ keyLogin }}" 
+                            style="width:122px;height:35px; margin: 0px; padding:0px;border:none;overflow:hidden" 
+                            scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media">a</iframe>
+                    </li>
+
+                    
+                {% endif %}
+            </ul>
+        </div>
+            
+
+    </div>
+
+    <div class="container-fluid">
+        
+        {# para visualizar la barra izquierda #}
+        {# <a class="mobile-sidebar-toggle" href="#">
+            <i class="fa fa-th-list"></i>
+        </a> #}
+        
+        {# {% if  remoteUser.storeName is not defined %}
+        <a href="/" id="brand">SYSTEM</a>
+        {% else %}
+        <a href="/" id="company">{{ remoteUser.storeName }} </a> 
+        {% endif %} #}
+
+        {# <a class="toggle-nav" data-placement="bottom" href="#" rel="tooltip" title="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </a> #}
+            <ul class="main-nav">
+               
+                {% if   remoteUser.isLogged is defined and remoteUser.isLogged  == true %}
+                    
+
+                    {% include "MainBundle/Templates/Components/Includes/menu.twig" with {'links':treeMenu} only %}
+                    {{ topMenu | raw }}
+                {# {% else %}
+                        <li class="inactive">
+                            <a href="/">
+                                <span>Inicio</span>
+                            </a>
+                        </li> #}
+                {% endif %}
+                        {# <li class="inactive">
+                            <a href="/ubicaciones">
+                                <span>Ubicaciones</span>
+                            </a>
+                        </li> #}
+            </ul>
+        {# <div class="user" style="margin-top: 3px;">
+            <ul class="icon-nav">
+                {% if  remoteUser.isLogged is defined and remoteUser.isLogged  == true %}
+                <li class="dropdown">
+                    <a href="/message-center" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon-bell"></i>
+                        <span class="label label-lightred">4</span>
+                    </a>
+                    <ul class="dropdown-menu pull-right message-ul">
+                        <li>
+                            <a href="#">
+                                <span><i class="glyphicon-message_new"></i></span>
+                                <div class="details">
+                                    <div class="name">Message Center</div>
+                                    <div class="message">
+                                        2 unreaded messages
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span><i class="glyphicon-shopping_cart"></i></span>
+                                <div class="details">
+                                    <div class="name">Cart</div>
+                                    <div class="message">
+                                        1 Item<br>
+                                        Total: $556.00 MX
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="details">
+                                    <div class="name">Bob Doe</div>
+                                    <div class="message">
+                                        Excepteur Duis magna dolor!
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/clear-notifications" class="more-messages">Clear Notifications
+                                <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                    <li class='dropdown colo'>
+						<a href="#" class='dropdown-toggle' data-toggle="dropdown" rel="tooltip" data-placement="bottom" data-original-title="Aplicaciones">
+							<i class="glyphicon-show_thumbnails"></i>
+						</a>
+						<ul class="dropdown-menu pull-right">
+							
+                            {% for app in appsList %}
+                            <li><a href="http://{{ app.domain }}">{{ app.store_name }}</a></li>
+                            {% endfor %}
+                           
+						</ul>
+					</li>
+                    {% endif %}
+                    
+            </ul>
+            <ul class="icon-nav">
+
+              
+
+                {% if  remoteUser.isLogged is defined and remoteUser.isLogged  == true %}
+                    <a
+                        class='dropdown-toggle' data-toggle="dropdown" href="#" style="margin-top: 2px">
+                        <img "demo/user-avatar.jpg" alt="Raul Quintero" src="/img/demo/locked.jpg" class="imageCircle" style="padding-top: 0px; height:37px">&nbsp;
+                    </a>
+                    <ul class="dropdown-menu pull-right" style="padding-top: 0px;">
+                        <li class="dropdown" style="min-width: 220px;widthcolor: white;padding-top: 6px; padding-left:8px; padding-bottom:6px; padding-right: 6px; background-color: #d8d7d7; 
+                                width: 100%; fonti-weight: bold; text-align:center;">
+                                <img "demo/user-avatar.jpg" alt="Raul Quintero" src= "/img/demo/locked.jpg" "/img/noimage.jpg" class="imageCircle" style="padding-top: 0px; height:59px">
+                        <li class="dropdown" style="widthcolor: white;padding-top: 6px; padding-left:8px; padding-bottom:6px; padding-right: 6px; background-color: #d8d7d7; 
+                                width: 100%; fonti-weight: bold; text-align:center;">
+                                <b>{{  remoteUser.middleName | ucwords }} {{  remoteUser.lastName | ucwords }} </b>
+                               <p style="font-size: 12px; color: gray"> {{ remoteUser.username | lower}} <p>
+                        </li>
+                        <li>
+                            <a href="http://accounts.cibercomm.local/profile">Profile</a>
+                        </li>
+                        <li>
+                            <a href="http://accounts.cibercomm.local">Account settings</a>
+                        </li>
+                        <li>
+                            <a href="http://accounts.cibercomm.local/devices">Devices</a>
+                        </li>
+                        <li>
+                            <button class="btn btn-danger" style="width: 211px; margin-left: 4px;" onclick="window.location.href = '{{ authServer }}/logout';">sign Out</button>
+                        </li>
+                    </ul>
+
+                {% else %}
+                    <li class="dropdown" id="login" style="color: white; padding-top: 2px">
+                        <iframe id="buttonLogin" src="http://portero.tizoc.local/login-button/{{ keyLogin }}" 
+                            style="width:122px;height:35px; margin: 0px; padding:0px;border:none;overflow:hidden" 
+                            scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media">a</iframe>
+                    </li>
+
+                    
+                {% endif %}
+            </ul>
+        </div> #}
+    </div>
+</div>
+

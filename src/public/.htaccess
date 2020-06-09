@@ -1,0 +1,16 @@
+# # BEGIN NinjaFirewall
+# <IfModule mod_php7.c>
+#    php_value auto_prepend_file /mnt/c/Users/raul.quintero/projects/ninja/firewall.php
+# </IfModule>
+# # END NinjaFirewall
+
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+Header set Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

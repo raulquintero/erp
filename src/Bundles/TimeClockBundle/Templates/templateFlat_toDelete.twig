@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+	<!-- Apple devices fullscreen -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Apple devices fullscreen -->
+	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<title>LaundrySoft{% block title %}{% endblock %}</title>
+
+	{% block head %} {% endblock %}
+
+	{% block styles %} {% endblock %}
+	<style>
+    .temp{
+		position: absolute;
+		float: left;
+		left: 200px;
+	}
+		.loader {
+            height: 6px;
+            width: 100%;
+            position: relative;
+            display: none;
+            overflow: hidden;
+            background-color: #368ee0;
+        }
+
+        #loader {
+            height: 6px;
+            display: inline;
+            /* background-color:red; */
+        }
+
+        .loader:before {
+            display: block;
+            position: absolute;
+            content: "";
+            left: -200px;
+            width: 200px;
+            height: 6px;
+            background-color: #f81a1a;
+            animation: loading 2s linear infinite;
+        }
+		   @keyframes loading {
+            from {
+                left: -200px;
+                width: 30%;
+            }
+
+            50% {
+                width: 30%;
+            }
+
+            70% {
+                width: 70%;
+            }
+
+            80% {
+                left: 50%;
+            }
+
+            95% {
+                left: 120%;
+            }
+
+            to {
+                left: 100%;
+            }
+        }
+
+.icon-nav {
+
+    display:  inline !important;
+    position: relative;
+}
+
+@media screen and (max-width: 840px) {
+ 
+    .icon-nav {
+
+        display:  inline !important;
+    }
+    
+}
+
+@media screen and (max-width: 1500px) {
+    body {
+        font-size:20px !important;
+    }
+    #navigation .main-nav > li > a {
+    font-size: 20px;
+    }
+}
+
+.letterCircle {
+  border-radius: 35%;
+  width: 26px;
+  height: 22px;
+  padding: 6px;
+  background: green;
+  border: 2px solid #fff5;
+  color: white;
+  text-align: center;
+  font: 16px Arial, sans-serif;
+    display:inline-table;
+    line-height: 23px;
+}
+
+.imageCircle {
+    border-radius: 53%;
+    background: #188f2f;
+    border: 3px solid #fff5;
+    line-height: normal;
+    display: inline-table;
+    line-height: 23px;
+    }
+    
+    /* remueve menu izquierdo */
+	#left {
+		width:0px;
+	}
+	#main {
+		left: 0px;
+		margin-left: 0px;
+		padding-bottom: 0px;
+	}
+	</style>
+	
+
+
+
+	<!--[if lte IE 9]>
+		<script src="/flat/js/plugins/placeholder/jquery.placeholder.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('input, textarea').placeholder();
+			});
+		</script>
+	<![endif]-->
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/img/favicon.ico" />
+	<!-- Apple devices Homescreen icon -->
+	<link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-precomposed.png" />
+
+</head>
+
+<body class="theme-{{ themeColor }}" data-theme="theme-{{ themeColor }}" data-mobile-sidebar="button">
+
+{% include 'TimeClockBundle/Templates/Components/navbar.twig' %}
+
+	<div class="container-fluid nav-hidden-not nav-fixed" id="content">
+    {# {% if pageTitle is defined and pageTitle is not empty %} #}
+		{# {% include 'TimeClockBundle/Templates/Components/left.twig' %} #}
+    {% if  name is defined and name is not empty %}
+    {% endif %}
+
+
+		<div id="main">
+		{% block main %}{% endblock %}
+			
+		</div>
+
+        
+	</div>
+	
+
+{# <img src="http://portero.tizoc.local/set.php?hola=aqui" /> #}
+
+	<!-- extra js -->
+    {# <script src="/assets/js/local/listenerTemplate.js"></script> #}
+    
+	{% block scripts %} {% endblock %}
+	{# <script src="http://auth.kumai.local/assets/js/remote/init.js"></script> #}
+</body>
+
+
+</html sca>
+
+
+
+
+

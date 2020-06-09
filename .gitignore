@@ -1,0 +1,8 @@
+.idea/*
+.env
+tempCodeRunnerFile.php
+.vscode/*
+storage/logs/*
+vendor/*
+config/database.php
+composer.lock

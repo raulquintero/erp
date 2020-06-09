@@ -1,0 +1,94 @@
+<div class="navbar-fixed-top" id="navigation">
+    <div class="" id="loader" style="z-index: -1"></div>
+
+    <div class="container-fluid">
+        {# 
+        para visualizar la barra izquierda
+        <a class="mobile-sidebar-toggle" href="#">
+            <i class="fa fa-th-list"></i>
+        </a> #}
+        <a href="/" id="brand">{{ remoteUser.storeName }}</a>
+        {# <a class="toggle-nav" data-placement="bottom" href="#" rel="tooltip" title="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </a> #}
+            <ul class="main-nav">
+               
+        {% if   remoteUser.isLogged is defined and remoteUser.isLogged  == true %}
+            
+            {{ topMenu | raw }}
+        {# {% else %}
+                <li class="inactive">
+                    <a href="/">
+                        <span>Inicio</span>
+                    </a>
+                </li> #}
+        {% endif %}
+                {# <li class="inactive">
+					<a href="/ubicaciones">
+						<span>Ubicaciones</span>
+					</a>
+				</li> #}
+            </ul>
+        <div class="user" style="margin-top: 3px;">
+
+            <ul class="icon-nav">
+
+
+                {% if  remoteUser.isLogged is defined and remoteUser.isLogged  == true %}
+                    <a
+                        class='dropdown-toggle' data-toggle="dropdown" href="#" style="margin-top: 2px">
+                        {# <span class="letterCircle">R</span> #}
+                        <img "demo/user-avatar.jpg" alt="Raul Quintero" src="/img/noimage.jpg" class="imageCircle" style="padding-top: 0px; height:37px">&nbsp;
+                        {# <img src="/img/verified2.png" height="20" alt="" style="margin-top: 7px">&nbsp;&nbsp; #}
+                    </a>
+                    <ul class="dropdown-menu pull-right" style="padding-top: 0px;">
+                        <li class="dropdown" style="min-width: 220px;widthcolor: white;padding-top: 6px; padding-left:8px; padding-bottom:6px; padding-right: 6px; background-color: #d8d7d7; 
+                                width: 100%; fonti-weight: bold; text-align:center;">
+                                <img "demo/user-avatar.jpg" alt="Raul Quintero" src="/img/noimage.jpg" class="imageCircle" style="padding-top: 0px; height:59px">
+                        <li class="dropdown" style="widthcolor: white;padding-top: 6px; padding-left:8px; padding-bottom:6px; padding-right: 6px; background-color: #d8d7d7; 
+                                width: 100%; fonti-weight: bold; text-align:center;">
+                                <b>{{  remoteUser.middleName | ucwords }} {{  remoteUser.lastName | ucwords }} </b>
+                               <p style="font-size: 12px; color: gray"> {{ remoteUser.username | lower}} <p>
+                        </li>
+                        <li>
+                            <a href="/profile">Profile</a>
+                        </li>
+                        <li>
+                            <a href1="/settings">Account settings</a>
+                        </li>
+                        <li>
+                            <a href="http://simplicity.local">goto simplicity.com</a>
+                        </li>
+                        <li>
+                            <a href="{{ authServer }}/logout">Sign out</a>
+                        </li>
+                    </ul>
+
+                {% else %}
+
+                    <li class="dropdown" id="login" style="color: white; padding-top: 2px">
+
+                        <iframe id="buttonLogin" src="http://portero.tizoc.local/login-button/{{ keyLogin }}" 
+                            style="width:123px;height:35px; margin: 0px; padding:0px;border:none;overflow:hidden" 
+                            scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                            
+                        {# <a class="btn btn-green btn-lg" onclick="openLogin();" style="color:white; border: 1px solid #336699; line-height: 18px; ">
+                            <i class="fa fa-sign-in fa-5"></i>
+                            Log In
+                        </a> #}
+{#                       
+                            <ul class="dropdown-menu pull-right"> <li>
+                                <a href="http://simplicity.local">goto simplicity.com</a>
+                            </li>
+                            <li>
+                                <a href="/login">Log In</a>
+                            </li>
+                        </ul> #}
+                    </li>
+
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+

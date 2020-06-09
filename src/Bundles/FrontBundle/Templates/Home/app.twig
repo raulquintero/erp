@@ -1,0 +1,207 @@
+{% extends 'MainBundle/Templates/templateFlat.twig' %}
+
+{% block title %}::Home{% endblock %}
+
+{% block styles %}
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="/flat/css/bootstrap.min.css">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="/flat/css/plugins/jquery-ui/jquery-ui.min.css">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="/flat/css/style.css">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="/flat/css/themes.css">
+
+<style>
+
+	.bg {
+	position: absolute;
+	margin-left: auto;
+	margin-top: auto
+	}
+	.background-wrap {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 40px;
+		left: 0;
+		z-index: -1;
+		overflow: hidden;
+	}
+	.background {
+		background: url('/img/wall_pos.jpg');
+		background-size: cover;
+		filter: blur(10px);
+		height: 105%;
+		position: relative;
+		width: 105%;
+		right: -2.5%;
+		left: -2.5%;
+		top: -2.5%;
+		bottom: -2.5%;
+	}
+
+
+	#left {
+		width:0px;
+	}
+	#main {
+		left: 0px;
+		margin-left: 0px;
+		padding-bottom: 0px;
+	}
+	.wallpaper {
+		width: 100%;
+	}
+	.screenshot{
+		min-width: 200px;
+
+	}
+</style>
+
+	
+{% endblock %}
+
+{% block main %}
+	
+		
+
+			<div class="container-fluid">
+				<div class="page-header">
+					<div class="pull-left">
+						<h1>Lavanderia soft</h1>
+					</div>
+					<div class="pull-right">
+						<ul class="minitiles">
+							<li class="grey">
+								<a href="#">
+									<i class="fa fa-cogs"></i>
+								</a>
+							</li>
+							<li class="lightgrey">
+								<a href="#">
+									<i class="fa fa-globe"></i>
+								</a>
+							</li>
+						</ul>
+						<ul class="stats">
+							<li class="satgreen">
+								<i class="fa fa-money"></i>
+								<div class="details">
+									<span class="big">$324,12</span>
+									<span>Balance</span>
+								</div>
+							</li>
+							<li class="lightred">
+								<i class="fa fa-calendar"></i>
+								<div class="details">
+									<span class="big">February 22, 2013</span>
+									<span>Wednesday, 13:56</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="breadcrumbs">
+					<ul>
+						<li>
+							<a href="/">Apps</a>
+							<i class="fa fa-angle-right"></i>
+						</li>
+						<li>
+							<a href="more-files.html">Limpiaduria Soft</a>
+						</li>
+					</ul>
+					<div class="close-bread">
+						<a href="#">
+							<i class="fa fa-times"></i>
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="box">
+							<div class="box-title">
+								
+							</div>
+							<div class="box-content">
+								<div class="row">
+									<div class="pricing-tables">
+										<ul class="pricing col-sm-9">
+											<li class="head">
+												<div class="name">ScreenShots</div>
+												<div class="price">
+													<img class="screenshot" src="/img/dashboard.jpg">
+												</div>
+											</li>
+											<li>10 Users</li>
+											<li>En un hotel es un local o espacio dedicado a lavar la ropa, en conexión con el edificio principal. Un edificio de apartamentos o una residencia de estudiantes pueden tener un servicio de lavandería compartida, o también una empresa independiente que se conoce así mismo como lavandería.</li>
+											
+										</ul>
+										
+										<ul class="pricing blue  col-sm-3">
+											<li class="head">
+												<div class="name">Para Pymes</div>
+												<div class="price">
+													$500.00 Mx
+													<span>por mes</span>
+												</div>
+												<div class="info">Most popular plan</div>
+											</li>
+											<li>10 Users</li>
+											<li>Unlimited Traffic</li>
+											<li>100 GB HDD</li>
+											<li>
+												<i class="fa fa-check"></i>Configuracion Gratis</li>
+											<li>
+												<i class="fa fa-check"></i>Periodo de prueba gratis de 30 dias</li>
+											<li class="button">
+												<a href="#" class="btn btn-blue">Sign up</a>
+												<div class="help-text">Best value</div>
+											</li>
+										</ul>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+{% endblock %}
+
+{% block scripts %}
+
+
+
+	<!-- jQuery -->
+	<script src="/flat/js/jquery.min.js"></script>
+
+	<!-- Nice Scroll -->
+	<script src="/flat/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+	<!-- imagesLoaded -->
+	<script src="/flat/js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="/flat/js/plugins/jquery-ui/jquery-ui.js"></script>
+	<!-- slimScroll -->
+	<script src="/flat/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="/flat/js/bootstrap.min.js"></script>
+	<!-- Bootbox -->
+	<script src="/flat/js/plugins/bootbox/jquery.bootbox.js"></script>
+	<!-- Bootbox -->
+	<script src="/flat/js/plugins/form/jquery.form.min.js"></script>
+	<!-- Validation -->
+	<script src="/flat/js/plugins/validation/jquery.validate.min.js"></script>
+	<script src="/flat/js/plugins/validation/additional-methods.min.js"></script>
+
+	<!-- Theme framework -->
+	<script src="/flat/js/eakroko.min.js"></script>
+	<!-- Theme scripts -->
+	<script src="/flat/js/application.min.js"></script>
+	<!-- Just for demonstration -->
+	<script src="/flat/js/demonstration.min.js"></script>
+
+{% endblock %}

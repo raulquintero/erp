@@ -1,0 +1,19 @@
+<!--includes/menu-links.html-->
+{% for link in links %}
+        {% if link.sublinks %}
+            <li class="inactive">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                <span>{{ link.title }}</span>
+                <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+                {% include "MainBundle/Templates/Components/Includes/menu.twig" with {'links': link.sublinks} %}
+            </li>
+            </ul>
+        {% else %}
+            <li class="inactive"><a href="{{ link.path }}"><span>{{ link.title }}</span></a>
+        {% endif %}
+    </li>
+{% endfor %}
