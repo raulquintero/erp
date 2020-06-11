@@ -1,0 +1,204 @@
+{% extends 'MainBundle/Templates/templateFlat.twig' %}
+
+
+{% block styles %}
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/flat/css/bootstrap.min.css">
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="/flat/css/plugins/jquery-ui/jquery-ui.min.css">
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/flat/css/style.css">
+    <!-- Color CSS -->
+    <link rel="stylesheet" href="/flat/css/themes.css">
+
+<style>
+
+    .bg {
+    position: absolute;
+    margin-left: auto;
+    margin-top: auto
+    }
+    .background-wrap {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        z-index: -1;
+        overflow: hidden;
+    }
+    .background {
+        background: url('/img/wall_pos.jpg');
+        background-size: cover;
+        filter: blur(10px);
+        height: 105%;
+        position: relative;
+        width: 105%;
+        right: -2.5%;
+        left: -2.5%;
+        top: -2.5%;
+        bottom: -2.5%;
+    }
+
+
+    #left {
+        width:0px;
+    }
+    #main {
+        left: 0px;
+        margin-left: 0px;
+        padding-bottom: 0px;
+    }
+    .wallpaper {
+        width: 100%;
+    }
+    .pricing {
+        min-width: 170px;
+    }
+    .logo {
+        width: 150px;
+        height: 119.5px
+    }
+</style>
+
+    
+{% endblock %}
+
+{% block main %}
+
+<div class="container-fluid">
+                <div class="page-header">
+                    <div class="pull-left">
+                        <h1>Eidtar Producto</h1>
+                    </div>
+                    <div class="pull-right">
+                        <ul class="minitiles">
+                            <li class="grey">
+                                <a href="#">
+                                    <i class="fa fa-cogs"></i>
+                                </a>
+                            </li>
+                            <li class="lightgrey">
+                                <a href="#">
+                                    <i class="fa fa-globe"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="stats">
+                            
+                            <li class="lightred">
+                                <i class="fa fa-calendar"></i>
+                                <div class="details">
+                                    <span class="big">February 22, 2013</span>
+                                        <span>Wednesday, 13:56</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="breadcrumbs">
+                    <ul>
+                        <li>
+                            <a href="/">Inicio</a>
+                        </li>
+                        
+                    </ul>
+                    <div class="close-bread">
+                        <a href="#">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+	<div class="container" id="content">
+		<div id="main">
+			<div class="title">
+					Product Id: {{ product.id }}
+				</div>
+
+                <form method="post" action="/catalogue/product/save">
+                    <input type="hidden" name="product[id]" 
+                    value="{% if product.id is defined %}{{ product.id }}{% endif %}">
+                    <div class="form-group">
+                    <label for="inputProduct">code</label>
+                    <input type="text" class="form-control"  value="{% if product.code is defined %}{{ product.code }}{% endif %}"
+                        name="product[code]" id="code" aria-describedby="emailHelp" >
+                    </div>
+                    <div class="form-group">
+                    <label for="inputDescription">Description</label>
+                    <input type="text" class="form-control" value="{% if product.description is defined %}{{ product.description }}{% endif %}"
+                        name="product[description]" id="description">
+                    </div>
+                    <table>
+                    <tr>
+                    <td>
+                    <div class="form-group">
+                    <label for="inputPrecio">Precio 1</label>
+                    <input type="number" step="0.01" required class="form-control" value="{% if product.price1 is defined %}{{ product.price1 | number_format(2, '.', ',' ) }}{% endif %}" 
+                        name="product[price1]" id="price" placeholder="0.00">
+                    </div>
+                    </td>
+                    <td>
+                    <div class="form-group">
+                    <label for="inputPrecio">Precio 2</label>
+                    <input type="number" step="0.01" required class="form-control" value="{% if product.price2 is defined %}{{ product.price2 | number_format(2, '.', ',' ) }}{% endif %}" 
+                        name="product[price2]" id="price2" placeholder="0.00">
+                    </div>
+                    </td>
+                    <td>
+                    <div class="form-group">
+                    <label for="inputPrecio">Precio 3</label>
+                    <input type="number" step="0.01" required class="form-control" value="{% if product.price3 is defined %}{{ product.price3 | number_format(2, '.', ',' ) }}{% endif %}" 
+                        name="product[price3]" id="price3" placeholder="0.00">
+                    </div>
+                    </td>
+                    <td>
+                    <div class="form-group">
+                    <label for="inputPrecio">Precio 4</label>
+                    <input type="number" step="0.01" required class="form-control" value="{% if product.price4 is defined %}{{ product.price4 | number_format(2, '.', ',' ) }}{% endif %}" 
+                        name="product[price4]" id="price4" placeholder="0.00">
+                    </div>
+                    </td>
+                    <td>
+                    <div class="form-group">
+                    <label for="inputPrecio">Precio 5</label>
+                    <input type="number" step="0.01" required class="form-control" value="{% if product.price5 is defined %}{{ product.price5 | number_format(2, '.', ',' ) }}{% endif %}" 
+                        name="product[price5]" id="price5" placeholder="0.00">
+                    </div>
+                    </td>
+                    </tr>
+                    </table>
+                    <div class="form-group">
+                    <label for="selectSupplier">Tipo de Producto</label>
+                    <select class="form-control form-control-lg" name="product[product_type_id]">
+                    {% for productType in productTypes %}
+                        <option value="{{ productType.id  }}"  {% if product.product_type_id is defined and productType.id == product.product_type_id %}selected{% endif %}>{{ productType.description }}</option>
+                    {% endfor %}
+                    </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="selectSupplier">Marca</label>
+                    <select class="form-control form-control-lg" name="product[brand_id]">
+                    {% for brand in brands %}
+                        <option value="{{ brand.id  }}"  {% if product.brand is defined and brand.id == product.brand_id %}selected{% endif %}>{{ brand.description }}</option>
+                    {% endfor %}
+                    </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">{% if product.id > 0 %}Salvar {% else %} Insertar {% endif %}</button>
+                </form>
+
+
+
+            <div>
+		</div>
+	</div>
+
+
+
+</div>
+{% endblock %}

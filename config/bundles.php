@@ -11,6 +11,7 @@ return [
     '/NominaBundle',
     '/StoreBundle',
     '/TimeClockBundle',
+    '/ProductsBundle',
     // '/SignInBundle',
     // '/UserAgentBundle',
 ];

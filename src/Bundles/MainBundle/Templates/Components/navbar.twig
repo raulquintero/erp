@@ -1,7 +1,7 @@
 
 <div class="navbar-fixed-top" id="navigation">
     <div class="container-fluid" ide="loader" style="z-index: -1; background-color: #204e81; padding:8px">
-        <a href="/" id="company">{{ remoteUser.storeName }} </a> 
+        <a href="/" id="company">ERP::{{ remoteUser.storeName }} </a> 
             
         <div class="user" style="margin-top: 3px;">
             <ul class="icon-nav">
@@ -142,7 +142,7 @@
                 {% if   remoteUser.isLogged is defined and remoteUser.isLogged  == true %}
                     
 
-                    {% include "MainBundle/Templates/Components/Includes/menu.twig" with {'links':treeMenu} only %}
+                    {# {% include "MainBundle/Templates/Components/Includes/menu.twig" with {'links':treeMenu} only %} #}
                     {{ topMenu | raw }}
                 {# {% else %}
                         <li class="inactive">
