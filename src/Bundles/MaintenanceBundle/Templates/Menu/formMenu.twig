@@ -32,7 +32,7 @@
 <div class="container-fluid">
     <div class="page-header">
         <div class="pull-left">
-            <h1>Marcas</h1>
+            <h1>Menu</h1>
         </div>
         <div class="pull-right">
             <ul class="minitiles">
@@ -80,46 +80,58 @@
 
 
 <div class="container">
+<br><br>
+                    <div class="form-group">
+                        <label for="inputDescription">Menu Id</label>
+                        <input type="text" disabled class="form-control" value="{% if menu.id is defined %}{{ menu.id }}{% endif %}" name="menu[id]" id="menuId">
+                    </div>
+                <form method="post" action="{{ path_for('saveMenu', { 'id': menu.id }) }}">
+                {# /admin/catalogue/menu/save/{{ menu.id }} #}
+                    <input
+                    type="hidden" name="menu[id]" value="{% if menu.id is defined %}{{ menu.id }}{% endif %}">
+                    {# <input type="hidden" name="menu[parent_id]" value="{{ menu.id }}"> #}
+                    <div class="form-group">
+                        <label for="inputDescription">Description</label>
+                        <input type="text" class="form-control" value="{% if menu.option is defined %}{{ menu.option }}{% endif %}" name="menu[option]" id="option">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPosition">Posicion</label>
+                        <input type="number" class="form-control" value="{% if menu.position is defined %}{{ menu.position }}{% endif %}" name="menu[position]" id="option">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUrl">Url</label>
+                        <input type="text" class="form-control" value="{% if menu.url is defined %}{{ menu.url }}{% endif %}" name="menu[url]" id="option">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescription">Nivel</label>
+                        <input type="text" class="form-control" value="{% if menu.level is defined %}{{ menu.level }}{% endif %}" name="menu[level]" id="level">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="menu[sublevel]" value="1" id="sublevel" {% if menu.sublevel is defined and menu.sublevel %}checked{% endif %}>
+                        <label class="form-check-label" for="defaultCheck1">
+                            Tiene SubNiveles
+                        </label>
+                    </div>
+                    <br>
+                    <div class="form-select">
+                        <label for="selectSupplier">Parent</label>
+                        <select class="form-control form-control-lg" name="menu[parent_id]">
+                            <option value="0">Main</option>
+                        {% for parentMenu in menues %}
+                            <option value="{{ parentMenu.id  }}"  {% if menu.parent_id is defined and menu.parent_id == parentMenu.id %}selected{% endif %}>{{ parentMenu.option }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    <br><br>
+                    <button type="submit" class="btn btn-primary">
+                        {% if menu.id > 0 %}Salvar
+                        {% else %}
+                            Insertar
+                        {% endif %}
+                    </button>
 
-	<br>
-	{% if messages.fails is defined %}
-		{% for message in messages.fails %}
-			<div class="alert alert-warning alert-dismissible fade show" role="alert">
-				<strong>Code 400:</strong>
-				{{message}}.
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
+			    </form>
 
-		{% endfor %}
-	{% endif %}
-
-
-
-
-<table class="table table-hover" id="example">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Marca</th>
-      {% if category.id is defined %}{% set categoryId = category.id %} {% else %}{% set categoryId = 0 %} {% endif %}
-      <th><a href="/admin/catalogue/brand/form/0"><button type="button" class="btn btn-primary">Agregar </button></a></th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for brand in brands %}
-    <tr>
-      <td scope="row">{{ brand.id }}</td>
-      <td>{{ brand.description | ucwords}} </td>
-        <td>
-        <a href="/admin/catalogue/brand/form/{{ brand.id }}"><button type="button" class="btn btn-warning">Editar</button></a>
-        <a href="/admin/catalogue/brand/delete/{{ brand.id }}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
-    
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
 
 	
 </div>

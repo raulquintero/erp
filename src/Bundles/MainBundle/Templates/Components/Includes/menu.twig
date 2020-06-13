@@ -1,19 +1,48 @@
-<!--includes/menu-links.html-->
+<!--includes/option-links.html-->
 {% for link in links %}
-        {% if link.sublinks %}
-            <li class="inactive">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                <span>{{ link.title }}</span>
-                <span class="caret"></span>
-            </a>
+    {% if link.option == "div" %}
+      <li class="dropdown-divider"></li>
 
-            <ul class="dropdown-menu">
-            <li class="dropdown-submenu">
-                {% include "MainBundle/Templates/Components/Includes/menu.twig" with {'links': link.sublinks} %}
-            </li>
-            </ul>
         {% else %}
-            <li class="inactive"><a href="{{ link.path }}"><span>{{ link.title }}</span></a>
+        {% if link.sublinks >0 %}
+          {% if horizontal is defined and horizontal == 1 %} 
+              <li class="dropdown-submenu">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                <span>{{ link.option | ucfirst }}</span>
+                {# <span class="caret"></span> #}
+              </a>
+              {# <a id="dropdownMenu" href="#" role="button" data-toggle="dropdown" 
+                  aria-haspopup="true" aria-expanded="false" class="dropdown-item 
+                    dropdown-toggle">{{ link.option | ucwords }}</a> #}
+            {% else %} 
+              <li class="nav-item dropdown">
+              <a id="dropdownMenu" href="#" data-toggle="dropdown" aria-haspopup="true" 
+                aria-expanded="false" class="nav-link dropdown-toggle" >{{ link.option | ucwords }}
+                <span class="caret"></span>
+                </a>
+                
+          {% endif %}
+    			<ul aria-labelldeby="dropdownMenu" class="dropdown-menu border-0 shadow">
+            
+          {% include "MainBundle/Templates/Components/Includes/menu.twig" with {'links':link.sublinks, 'horizontal': 1} only %}
+                    
+                        
+                
+		    	</ul>
+          </li>
+          {% else %}
+            {% if horizontal is defined and horizontal == 1 %} 
+
+                <li><a href="{{ link.url }}" class="dropdown-item">{{ link.option | ucwords}}</a></li>
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="{{ link.url }}"><span>{{ link.option | ucwords }}</span></a></li>
+            {% endif %}
         {% endif %}
-    </li>
+    {% endif %}        
 {% endfor %}
+
+
+           {# <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+						<span>Forms</span>
+						<span class="caret"></span>
+					</a> #}

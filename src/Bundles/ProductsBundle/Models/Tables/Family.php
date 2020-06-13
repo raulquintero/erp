@@ -2,7 +2,8 @@
 
 
 
-class Family extends \Illuminate\Database\Eloquent\Model{
+class Family extends \Illuminate\Database\Eloquent\Model
+{
 
     public $timestamps = false;
 

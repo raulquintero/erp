@@ -32,7 +32,7 @@
 <div class="container-fluid">
     <div class="page-header">
         <div class="pull-left">
-            <h1>Marcas</h1>
+            <h1>Productos</h1>
         </div>
         <div class="pull-right">
             <ul class="minitiles">
@@ -80,46 +80,6 @@
 
 
 <div class="container">
-
-	<br>
-	{% if messages.fails is defined %}
-		{% for message in messages.fails %}
-			<div class="alert alert-warning alert-dismissible fade show" role="alert">
-				<strong>Code 400:</strong>
-				{{message}}.
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-
-		{% endfor %}
-	{% endif %}
-
-
-
-
-<table class="table table-hover" id="example">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Marca</th>
-      {% if category.id is defined %}{% set categoryId = category.id %} {% else %}{% set categoryId = 0 %} {% endif %}
-      <th><a href="/admin/catalogue/brand/form/0"><button type="button" class="btn btn-primary">Agregar </button></a></th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for brand in brands %}
-    <tr>
-      <td scope="row">{{ brand.id }}</td>
-      <td>{{ brand.description | ucwords}} </td>
-        <td>
-        <a href="/admin/catalogue/brand/form/{{ brand.id }}"><button type="button" class="btn btn-warning">Editar</button></a>
-        <a href="/admin/catalogue/brand/delete/{{ brand.id }}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
-    
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
 
 	
 </div>

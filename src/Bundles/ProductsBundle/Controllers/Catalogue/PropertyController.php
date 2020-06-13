@@ -28,13 +28,13 @@ class PropertyController extends ControllerAbstract
 
     public function form($id = 0)
     {
-        $unit = (new PropertyModel)->getById($id);
+        $property = (new PropertyModel)->getById($id);
         // d($unit);
-        if(!$unit['id']) {
-            $unit['id'] = 0;
+        if(!$property['id']) {
+            $property['id'] = 0;
         }
         $result = [
-            'unit' => $unit,
+            'property' => $property,
         ];
         d($result);
         return $this->render($this->bundle . '/Templates/Admin/Catalogue/Properties/formProperty.twig', $result);

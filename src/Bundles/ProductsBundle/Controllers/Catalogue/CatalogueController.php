@@ -35,6 +35,11 @@ class CatalogueController extends ControllerAbstract
 
     public function showProduct($product_id)
     {
+        $serviceId = 1;
+
+        $isAuthorized = $this->isAuthorized($serviceId, VIEW); // 0b100
+        if ($isAuthorized !== true) { return $isAuthorized; }
+
         $response = $this->getResponse();
         $router = $this->container->router;
         $flash = $this->getService('flash');
@@ -49,6 +54,7 @@ class CatalogueController extends ControllerAbstract
         
         $messages = $flash->getMessages();
         $result = [
+            'remoteUser' => REMOTE_USER,
             'messages' => $messages,
             'product' => $product,
             'property' => $property,

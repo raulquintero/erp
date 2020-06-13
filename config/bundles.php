@@ -12,6 +12,7 @@ return [
     '/StoreBundle',
     '/TimeClockBundle',
     '/ProductsBundle',
+    '/MaintenanceBundle'
     // '/SignInBundle',
     // '/UserAgentBundle',
 ];

@@ -4,7 +4,8 @@ use Bundles\ProductsBundle\Models\Tables\Product_prop_detail;
 use Bundles\ProductsBundle\Models\Tables\ProductType;
 
 
-class Product extends \Illuminate\Database\Eloquent\Model{
+class Product extends TableAbstract
+{
 
     public $timestamps = false;
 

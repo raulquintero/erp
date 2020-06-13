@@ -1,231 +1,140 @@
 <?php namespace Resources\Database\Models;
 
+use Tracy\Debugger;
+use Resources\Database\Tables\DbDefault\Menu;
 use Illuminate\Database\Capsule\Manager as DB;
+use Resources\Database\Tables\DbDefault\Permission;
 
-class MenuModel {
+class MenuModel
+{
 
-    public function getMenu($id = 0){
-
-	
-		$menu = '
-				<li class="inactive">
-					<a href="/">
-						<span>Home</span>
-					</a>
-				</li>
-				<li class="inactive">
-				<a href="#" data-toggle="dropdown" class="dropdown-toggle">
-						<span>STORE</span>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						
-						<li class="dropdown-submenu">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Productos</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-submenu">
-									<a href="#" data-toggle="dropdown" class="dropdown-toggle">Por Categorias</a>
-									<ul class="dropdown-menu">
-										<li class="dropdown-submenu">
-											<a href="#" data-toggle="dropdown" class="dropdown-toggle">Ropa</a>
-											<ul class="dropdown-menu">
-												<li>
-													<a href="/productos/ropa-mujer">Mujer</a>
-												</li>
-												<li>
-													<a href="/productos/ropa-hombre">Hombre</a>
-												</li>
-												<li>
-													<a href="/productos/ropa-ninos">Ninos</a>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<a href="/productos/hogar">Hogar</a>
-										</li>
-										<li>
-											<a href="/productos-electronica">Electronica</a>
-										</li>
-									</ul>
-								</li>
-							</ul>	
-						</li>
-						<li class="dropdown-submenu">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle">Servicios</a>
-							<ul class="dropdown-menu">
-								<li class="dropdown-submenu">
-									<a href="#" data-toggle="dropdown" class="dropdown-toggle">Por Categorias</a>
-									<ul class="dropdown-menu">
-										<li class="dropdown-submenu">
-											<a href="#" data-toggle="dropdown" class="dropdown-toggle">Ropa</a>
-											<ul class="dropdown-menu">
-												<li>
-													<a href="/productos/ropa-mujer">Mujer</a>
-												</li>
-												<li>
-													<a href="/productos/ropa-hombre">Hombre</a>
-												</li>
-												<li>
-													<a href="/productos/ropa-ninos">Ninos</a>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<a href="/productos/hogar">Hogar</a>
-										</li>
-										<li>
-											<a href="/productos-electronica">Electronica</a>
-										</li>
-									</ul>
-								</li>
-							</ul>	
-						</li>
-						<li class="inactive">
-							<a href="/store/inventarios">
-								<span>Inventarios</span>
-							</a>
-						</li>
-						<li class="inactive">
-							<a href="/store/entradas">
-								<span>Entradas</span>
-							</a>
-						</li>
-						<li class="inactive">
-							<a href="/store/salidas">
-								<span>Salidas</span>
-							</a>
-						</li>
-						<li class="inactive">
-							<a href="/store/pos">
-								<span>PoS</span>
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li class="inactive">
-				<a href="#" data-toggle="dropdown" class="dropdown-toggle">
-						<span>Nomina</span>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="inactive">
-							<a href="/nomina/empleados.html">
-								<span>Empleados</span>
-							</a>
-						</li>
-						<li class="inactive">
-							<a href="/nomina/generate">
-								<span>Generar Nomina</span>
-							</a>
-						</li>
-						<li class="inactive">
-							<a href="/nomina/view">
-								<span>Consultar Nomina</span>
-							</a>
-						</li>
-						
-					</ul>
-				</li>
-				<li class="inactive">
-					<a href="/timeclock">
-						<span>Checador</span>
-					</a>
-				</li>
-				<li class="inactive">
-				<a href="#" data-toggle="dropdown" class="dropdown-toggle">
-						<span>Admin</span>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="inactive">
-							<a href="/dashboard">
-								<span>Dashboard</span>
-							</a>
-						</li>
-						<li class="inactive" style="border: 1px solid #e8e8e8"></li>
-						<li class="inactive">
-							<a href="/users">
-								<span>Users</span>
-							</a>
-						</li>
-						<li class="inactive">
-							<a href="/productos">
-								<span>Productos</span>
-							</a>
-						</li>
-						<li class="inactive" style="border: 1px solid #e8e8e8"></li>
-						<li class="inactive">
-							<a href="/membership">
-								<span>Membresia</span>
-							</a>
-						</li>
-					</ul>
-				</li>
-				
-				<li class="inactive">
-				<a href="#" data-toggle="dropdown" class="dropdown-toggle">
-						<span>AppCibercomm</span>
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<li class="inactive">
-							<a href="/store">
-								<span>Store</span>
-							</a>
-						</li>
-						<li class="inactive">
-							<a href="/nomina">
-								<span>Nomina</span>
-							</a>
-						</li>
-						<li class="inactive">
-							<a href="/reportes">
-								<span>Reportes</span>
-							</a>
-						</li>
-						<li class="inactive">
-							<a href="/checador">
-								<span>Checador Virtual</span>
-							</a>
-						</li>
-						
-						<li class="inactive" style="border: 1px solid #e8e8e8"></li>
-						<li class="inactive">
-							<a href="/modules/store">
-								<span>Agregar Modulos</span>
-							</a>
-						</li>
-					</ul>
-				</li>
-				
-               
-				
-        ';
-        return $menu;
-    }
-   
-	public function getMenu2( $id = 0)
-	{
-		$menu =  [
-			["id" => "1","title" => "Home","path" => "/","sublinks" => null],
-			["id" => "2","title" => "Store","path" => "#","sublinks" => [
-				["id" => "4","title" => "productos","path" => "/","sublinks" => null],
-				["id" => "5","title" => "servicios","path" => "/","sublinks" => null],
-				["id" => "6","title" => "Inventarios","path" => "/store/inventarios","sublinks" => null],
-				["id" => "6","title" => "entradas","path" => "/store/entradas","sublinks" => null],
-				["id" => "6","title" => "salidas","path" => "/store/salidas","sublinks" => null],
-				["id" => "6","title" => "pos","path" => "/store/pos","sublinks" => null],
-				]
-			],
-			["id" => "3","title" => "Info","path" => "/","sublinks" => [
-				["id" => "7","title" => "domicilio","path" => "/","sublinks" => null],
-				["id" => "8","title" => "telefono","path" => "/","sublinks" => null],
-				]
-			]
-		
-		];
-		return $menu;
-			// id, 
+	public function getAllWithLevels()
+    {
+        $menues = Menu::where('sublevel', 1)->get();
+        // dd($families);
+        return $menues->toArray();
 	}
+	
+    public function getById($id)
+    {
+        try{
+			$menu = Menu::findOrFail($id);
+			$menu->permission;
+            $menu = $menu->toArray();
+            Debugger::barDump(['menu' => $menu], 'menu details');
+        } catch(\Exception $e){
+            $menu = false;
+            // dd($e);
+        }
+        return $menu;
+	}
+	
+	public function getSelectedMenu($id = 0)
+	{
+		$options = Menu::where("parent_id", $id)->orderBy('position', 'ASC')->get();
+		return $options->toArray();
+	}
+	
+	public function getSelectedMenuPath($id = 0)
+	{
+		$sql = "WITH RECURSIVE recur AS (
+			SELECT id, option, parent_id,url, 0 AS nivel
+			FROM menus 
+			WHERE id = :categoryId 
+			UNION ALL
+			SELECT e.id, e.option, e.parent_id, e.url,recur.nivel +1  AS level
+			FROM menus e
+			JOIN recur ON e.id = recur.parent_id) 
+			select * from recur order by parent_id";
+
+		$bindings = ['categoryId' => $id];
+		$paths = DB::select($sql, $bindings);
+        $paths = Menu::hydrate($paths)->toArray();
+		
+		return $paths;
+	}
+	
+	public function getSelectedMenuPathExamples( $id = 0)
+	{
+		#Comment examples with sql statemenst raw
+
+		// $pdo = DB::connection('mysql2')->getPdo();
+
+		// $pdo = DB::connection()->getPdo();
+		// $stmt = $pdo->prepare($sql);
+		// $stmt->execute($bindings);	
+		// $paths   = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+		
+		// $path = Menu::find(1);
+		// $path->child;
+		// dd($paths);
+
+	}
+
+
+
+
+	public function getMenus()
+    {
+		$options = Menu::orderBy('position')->get()->toArray(); 
+		Menu::all()->toArray();
+		
+        $option = $this->buildMenu($options);
+		
+        return $option;
+		
+	}
+	
+    public function buildMenu($optionArray,  $id = 0)
+    {
+			$mid =0;
+		foreach ($optionArray as $rid => $subMenu) {
+			// d('sub', $subMenu);
+
+			if ($subMenu['parent_id'] == $id){
+				if ($subMenu['sublevel'] == 0){
+					$option[$subMenu['position']] = $subMenu;
+					$option[$subMenu['position']]['sublinks'] = null;
+				} else {
+					$option[$subMenu['position']] = $subMenu;
+					$option[$subMenu['position']]['sublinks'] = $this->buildMenu($optionArray, $subMenu['id']);
+				}
+
+			} 
+
+			$mid = $mid + 1;
+			
+        }
+
+		// d($mid, $option, $optionArray);
+        return $option ;
+    }
+
+    public function save($menu)
+    {
+		// dd($menu);
+        if (!$this->validateMenu($menu)){
+            Debugger::barDump(['menu' => $menu], 'menu From Form');
+            return false;
+        }
+		$menuObj = Menu::updateOrCreate(['id'=>$menu['id']], $menu);
+		$permissionObj = Permission::updateOrCreate(['menu_id' => $menuObj->id], $menu);
+		$permission->menu_id = $menu->id;
+		$permission->save;
+        return true;
+	}
+	
+	protected function validateMenu($menu)
+    {
+		#ToDo develop validateMenu method
+		// dd($family);
+        $isValid = true;
+        // if (!$product['price1'] && !is_float($product['price1'])){
+        //     Debugger::barDump(['error' => 'the price is not valid.'], 'Message');
+        //     $isValid = false;
+        // }
+        return $isValid;
+    }
+
 
 }

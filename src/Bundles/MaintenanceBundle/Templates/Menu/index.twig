@@ -32,7 +32,7 @@
 <div class="container-fluid">
     <div class="page-header">
         <div class="pull-left">
-            <h1>Marcas</h1>
+            <h1>Menus</h1>
         </div>
         <div class="pull-right">
             <ul class="minitiles">
@@ -81,6 +81,22 @@
 
 <div class="container">
 
+{# <h3>Menus {{ categoryId }}</h3> #}
+<div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path_for('showMenus', { 'id': 0 }) }}">Home</a></li>
+
+{% for path in paths %}
+      {% if categoryId == path.id %}
+        <li class="breadcrumb-item active" aria-current="page">{{ path.option  | ucwords }}</li>
+      {% else %}
+        <li class="breadcrumb-item"><a href="{{ path_for('showMenus', { 'id': path.id }) }}">{{ path.option  | ucwords }}</a></li>
+      {% endif %}
+{% endfor %}
+    </ol>
+  </nav>
+</div>
 	<br>
 	{% if messages.fails is defined %}
 		{% for message in messages.fails %}
@@ -101,25 +117,40 @@
 <table class="table table-hover" id="example">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Marca</th>
-      {% if category.id is defined %}{% set categoryId = category.id %} {% else %}{% set categoryId = 0 %} {% endif %}
-      <th><a href="/admin/catalogue/brand/form/0"><button type="button" class="btn btn-primary">Agregar </button></a></th>
+      {# <th scope="col">#</th> #}
+      <th>Position</th>
+      <th scope="col">Menu</th>
+      <th scope="col">url</th>
+      <th scope="col">parent_id</th>
+      <th>Ordenar</th>
+      <th><a href="/maintenance/menu/form/0"><button type="button" class="btn btn-primary">Agregar </button></a></th>
     </tr>
   </thead>
   <tbody>
-    {% for brand in brands %}
+    {% for option in options %}
     <tr>
-      <td scope="row">{{ brand.id }}</td>
-      <td>{{ brand.description | ucwords}} </td>
-        <td>
-        <a href="/admin/catalogue/brand/form/{{ brand.id }}"><button type="button" class="btn btn-warning">Editar</button></a>
-        <a href="/admin/catalogue/brand/delete/{{ brand.id }}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+      {# <th scope="row">{{ option.id }}</th> #}
+      <td scope="row" >{{ option.position }}</td>
+      <td>{% if option.sublevel == 1 %}<a href="{{ path_for('showMenus', { 'id': option.id }) }}" class=" dropdown-toggle">{{ option.option | ucwords}} 
+      {# /admin/catalogue/families/show/{{ family.id }} #}
+            </a>{% else %}{{ option.option | ucwords }}{% endif %}</td>
+        <td>{{ option.url }}</td>
+      <td> {{ option.parent_id }}</td>
+      <td>
+        <button type="button" class="btn btn-secondary"><i class="fa fa-caret-up mr-1"></i></button>
+        <button type="button" class="btn btn-secondary"><i class="fa fa-caret-down mr-1"></i></button>
+      </td>
+    <td>
+        <a href="/maintenance/menu/move/{{ option.id }}"><button type="button" class="btn btn-success">Mover</button></a>
+        <a href="/maintenance/menu/form/{{ option.id }}"><button type="button" class="btn btn-warning">Editar</button></a>
+        <a href="/maintenance/menu/delete/{{ option.id }}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+    </td>
     
     </tr>
     {% endfor %}
   </tbody>
 </table>
+
 
 	
 </div>
