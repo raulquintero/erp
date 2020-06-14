@@ -35,7 +35,7 @@ class FamilyController extends ControllerAbstract
             'messages' => $flash->getMessages(),
             'category' => $category,
             'families' => $families,
-            // 'paths' => $this->familyObject->getSelectedLevelPath($id),
+            'paths' => $this->familyObject->getSelectedLevelPath($id),
         ];
 d($result);
         return $this->render($this->bundle . '/Templates/Admin/Catalogue/Families/index.twig', $result);

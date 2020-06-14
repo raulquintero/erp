@@ -1,9 +1,9 @@
 <?php namespace Resources\Database\Models;
 
 use Tracy\Debugger;
-use Resources\Database\Tables\DbDefault\Menu;
+use Resources\Database\Tables\Control\Menu;
 use Illuminate\Database\Capsule\Manager as DB;
-use Resources\Database\Tables\DbDefault\Permission;
+use Resources\Database\Tables\Control\Permission;
 
 class MenuModel
 {

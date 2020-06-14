@@ -89,9 +89,9 @@
 
 {% for path in paths %}
       {% if categoryId == path.id %}
-        <li class="breadcrumb-item active" aria-current="page">{{ path.option  | ucwords }}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ path.option_name  | ucwords }}</li>
       {% else %}
-        <li class="breadcrumb-item"><a href="{{ path_for('showMenus', { 'id': path.id }) }}">{{ path.option  | ucwords }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ path_for('showMenus', { 'id': path.id }) }}">{{ path.option_name  | ucwords }}</a></li>
       {% endif %}
 {% endfor %}
     </ol>
@@ -131,9 +131,9 @@
     <tr>
       {# <th scope="row">{{ option.id }}</th> #}
       <td scope="row" >{{ option.position }}</td>
-      <td>{% if option.sublevel == 1 %}<a href="{{ path_for('showMenus', { 'id': option.id }) }}" class=" dropdown-toggle">{{ option.option | ucwords}} 
+      <td>{% if option.sublevel == 1 %}<a href="{{ path_for('showMenus', { 'id': option.id }) }}" class=" dropdown-toggle">{{ option.option_name | ucwords}} 
       {# /admin/catalogue/families/show/{{ family.id }} #}
-            </a>{% else %}{{ option.option | ucwords }}{% endif %}</td>
+            </a>{% else %}{{ option.option_name | ucwords }}{% endif %}</td>
         <td>{{ option.url }}</td>
       <td> {{ option.parent_id }}</td>
       <td>

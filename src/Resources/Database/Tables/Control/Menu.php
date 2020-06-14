@@ -1,4 +1,4 @@
-<?php namespace Resources\Database\Tables\DbDefault;
+<?php namespace Resources\Database\Tables\Control;
 
 use Resources\Models\Tables\Permission;
 
@@ -6,6 +6,7 @@ use Resources\Models\Tables\Permission;
 
 class Menu extends \Illuminate\Database\Eloquent\Model{
 
+    protected $connection = 'controlDB';
     public $timestamps = false;
     protected $fillable = ['option', 'url', 'sublevel', 'parent_id', 'level', 'position'];
 

@@ -6,8 +6,10 @@ use Bundles\ProductsBundle\Models\Tables\Permission;
 
 class Menu extends \Illuminate\Database\Eloquent\Model{
 
+    protected $connection = 'controlDB';
+
     public $timestamps = false;
-    protected $fillable = ['option', 'url', 'sublevel', 'parent_id', 'level', 'position'];
+    protected $fillable = ['option_name', 'url', 'sublevel', 'parent_id', 'level', 'position'];
 
    
     

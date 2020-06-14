@@ -38,11 +38,11 @@ class MenuModel
 	public function getSelectedMenuPath($id = 0)
 	{
 		$sql = "WITH RECURSIVE recur AS (
-			SELECT id, option, parent_id,url, 0 AS nivel
+			SELECT id, option_name, parent_id,url, 0 AS nivel
 			FROM menus 
 			WHERE id = :categoryId 
 			UNION ALL
-			SELECT e.id, e.option, e.parent_id, e.url,recur.nivel +1  AS level
+			SELECT e.id, e.option_name, e.parent_id, e.url,recur.nivel +1  AS level
 			FROM menus e
 			JOIN recur ON e.id = recur.parent_id) 
 			select * from recur order by parent_id";
@@ -118,9 +118,10 @@ class MenuModel
             return false;
         }
 		$menuObj = Menu::updateOrCreate(['id'=>$menu['id']], $menu);
+		$menuObj->menu_id = $menuObj->id; 
 		$permissionObj = Permission::updateOrCreate(['menu_id' => $menuObj->id], $menu);
-		$permission->menu_id = $menu->id;
-		$permission->save;
+		// Debugger::barDump(['menu' => $menuObj->toArray()], 'menu From Form');
+
         return true;
 	}
 	

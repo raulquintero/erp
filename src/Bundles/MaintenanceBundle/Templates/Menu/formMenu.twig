@@ -92,7 +92,7 @@
                     {# <input type="hidden" name="menu[parent_id]" value="{{ menu.id }}"> #}
                     <div class="form-group">
                         <label for="inputDescription">Description</label>
-                        <input type="text" class="form-control" value="{% if menu.option is defined %}{{ menu.option }}{% endif %}" name="menu[option]" id="option">
+                        <input type="text" class="form-control" value="{% if menu.option_name is defined %}{{ menu.option_name }}{% endif %}" name="menu[option_name]" id="option">
                     </div>
                     <div class="form-group">
                         <label for="inputPosition">Posicion</label>
@@ -118,7 +118,7 @@
                         <select class="form-control form-control-lg" name="menu[parent_id]">
                             <option value="0">Main</option>
                         {% for parentMenu in menues %}
-                            <option value="{{ parentMenu.id  }}"  {% if menu.parent_id is defined and menu.parent_id == parentMenu.id %}selected{% endif %}>{{ parentMenu.option }}</option>
+                            <option value="{{ parentMenu.id  }}"  {% if menu.parent_id is defined and menu.parent_id == parentMenu.id %}selected{% endif %}>{{ parentMenu.option_name }}</option>
                         {% endfor %}
                         </select>
                     </div>
