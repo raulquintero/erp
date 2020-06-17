@@ -3,7 +3,7 @@
 return [
     "dev" => [
         "authServer" => 'http://portero.tizoc.local',
-        "dataServer" => 'http://laundry.tizoc.local',
+        "dataServer" => 'http://erp.mitienda.cibercomm.local',
         'loggerServer' => 'bitacora.server.local',
         "accountsServer" => 'accounts.cibercomm.local',
 

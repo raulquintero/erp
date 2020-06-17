@@ -1,7 +1,7 @@
 <?php namespace Bundles\ProductsBundle\Controllers\Catalogue;
 
 use Tracy\Debugger;
-use Bundles\ProductsBundle\Models\BrandModel;
+use Resources\Database\Models\BrandModel;
 use Core\Kernel\ControllerAbstract;
 
 

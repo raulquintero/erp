@@ -30,5 +30,6 @@ $app->get('/admin/catalogue/property/form/{id}','Bundles\ProductsBundle\Controll
 $app->post('/admin/catalogue/property/save','Bundles\ProductsBundle\Controllers\Catalogue\PropertyController:save')->setName('saveProperty');
 $app->get('/admin/catalogue/property/delete/{id}','Bundles\ProductsBundle\Controllers\Catalogue\PropertyController:delete')->setName('deleteProperty');
 
+$app->get('/admin/catalogue/property/details/show/{id}','Bundles\ProductsBundle\Controllers\Catalogue\PropertyDetailsController:show')->setName('showPropertyDetails')->setName('showPropertyDetails');
 
 

@@ -2,7 +2,7 @@
 
 use Tracy\Debugger;
 use Core\Kernel\ControllerAbstract;
-use Bundles\ProductsBundle\Models\FamilyModel;
+use Resources\Database\Models\FamilyModel;
 
 
 class FamilyController extends ControllerAbstract

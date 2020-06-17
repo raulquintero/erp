@@ -1,6 +1,6 @@
-<?php namespace Resources\Database\Tables\Control;
+<?php namespace Resources\Database\Tables\DbDefault;
 
-use Reources \Models\Tables\Control\Menu;
+use Resources\Database\Tables\DbDefault\Menu;
 
 
 class Permission extends \Illuminate\Database\Eloquent\Model{

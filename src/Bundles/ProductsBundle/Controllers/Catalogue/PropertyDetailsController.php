@@ -1,11 +1,11 @@
 <?php namespace Bundles\ProductsBundle\Controllers\Catalogue;
 
 use Tracy\Debugger;
-use Resources\Database\Models\PropertyModel;
+use Resources\Database\Models\PropDetailModel;
 use Core\Kernel\ControllerAbstract;
 
 
-class PropertyController extends ControllerAbstract
+class PropertyDetailsController extends ControllerAbstract
 {
     private $bundle = 'ProductsBundle';
 
@@ -13,17 +13,17 @@ class PropertyController extends ControllerAbstract
     {
         
         parent::__construct($container);
-        $this->unitObject = new PropertyModel;
+        $this->unitObject = new PropDetailModel;
     }
 
-    public function show()
+    public function show($id = 0 )
     {
 
         $result = [
-            'properties' => (new PropertyModel)->getAll(),
+            'propertyDetails' => (new PropDetailModel)->getByPropertyId($id),
         ];
     // dd($families);
-        return $this->render($this->bundle . '/Templates/Admin/Catalogue/Properties/index.twig', $result);
+        return $this->render($this->bundle . '/Templates/Admin/Catalogue/Properties/propertyDetails.twig', $result);
     }
 
     public function form($id = 0)

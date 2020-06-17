@@ -105,17 +105,17 @@
       <th scope="col">#</th>
       <th scope="col">Marca</th>
       {% if category.id is defined %}{% set categoryId = category.id %} {% else %}{% set categoryId = 0 %} {% endif %}
-      <th><a href="/admin/catalogue/property/form/0"><button type="button" class="btn btn-primary">Agregar </button></a></th>
+      <th><a href="/admin/catalogue/property/detail/form/0"><button type="button" class="btn btn-primary">Agregar </button></a></th>
     </tr>
   </thead>
   <tbody>
-    {% for property in properties %}
+    {% for propertyDetail in propertyDetails %}
     <tr>
-      <td scope="row"><a href="{{ path_for('showPropertyDetails', {'id': property.id}) }}">{{ property.id }}</a></td>
-      <td>{{ property.description}} </td>
+      <td scope="row">{{ propertyDetail.id }}</td>
+      <td>{{ propertyDetail.detail}} </td>
         <td>
-        <a href="/admin/catalogue/property/form/{{ property.id }}"><button type="button" class="btn btn-warning">Editar</button></a>
-        <a href="/admin/catalogue/property/delete/{{ property.id }}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+        <a href="/admin/catalogue/property/detail/form/{{ propertyDetail.id }}"><button type="button" class="btn btn-warning">Editar</button></a>
+        <a href="/admin/catalogue/property/detail/delete/{{ propertyDetail.id }}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
     
     </tr>
     {% endfor %}

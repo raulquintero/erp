@@ -2,14 +2,40 @@
 
 {% block styles %}
 
-<!-- Bootstrap -->
-<link rel="stylesheet" href="/flat/css/bootstrap.min.css">
-<!-- jQuery UI -->
-<link rel="stylesheet" href="/flat/css/plugins/jquery-ui/jquery-ui.min.css">
-<!-- Theme CSS -->
-<link rel="stylesheet" href="/flat/css/style.css">
-<!-- Color CSS -->
-<link rel="stylesheet" href="/flat/css/themes.css">
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="/flat/css/bootstrap.min.css">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" href="/flat/css/plugins/jquery-ui/jquery-ui.min.css">
+	<!-- PageGuide -->
+	<link rel="stylesheet" href="/flat/css/plugins/pageguide/pageguide.css">
+	<!-- Fullcalendar -->
+	<link rel="stylesheet" href="/flat/css/plugins/fullcalendar/fullcalendar.css">
+	<link rel="stylesheet" href="/flat/css/plugins/fullcalendar/fullcalendar.print.css" media="print">
+	<!-- Tagsinput -->
+	<link rel="stylesheet" href="/flat/css/plugins/tagsinput/jquery.tagsinput.css">
+	<!-- chosen -->
+	<link rel="stylesheet" href="/flat/css/plugins/chosen/chosen.css">
+	<!-- multi select -->
+	<link rel="stylesheet" href="/flat/css/plugins/multiselect/multi-select.css">
+	<!-- timepicker -->
+	<link rel="stylesheet" href="/flat/css/plugins/timepicker/bootstrap-timepicker.min.css">
+	<!-- colorpicker -->
+	<link rel="stylesheet" href="/flat/css/plugins/colorpicker/colorpicker.css">
+	<!-- Datepicker -->
+	<link rel="stylesheet" href="/flat/css/plugins/datepicker/datepicker.css">
+	<!-- Daterangepicker -->
+	<link rel="stylesheet" href="/flat/css/plugins/daterangepicker/daterangepicker.css">
+	<!-- Plupload -->
+	<link rel="stylesheet" href="/flat/css/plugins/plupload/jquery.plupload.queue.css">
+	<!-- select2 -->
+	<link rel="stylesheet" href="/flat/css/plugins/select2/select2.css">
+	<!-- icheck -->
+	<link rel="stylesheet" href="/flat/css/plugins/icheck/all.css">
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="/flat/css/style.css">
+	<!-- Color CSS -->
+	<link rel="stylesheet" href="/flat/css/themes.css">
 
 <style>
 
@@ -75,152 +101,200 @@
 
 </div>
 
-
-
-
-
 <div class="container">
-<br><br>
-				<div class="title">
-                    <div class="form-group">
-                    <label for="inputProduct">Product Id</label>
-                    <input type="text" class="form-control"  value="{% if product.id is defined %}{{ product.id }}{% endif %}"
-                        disabled name="product[id]" id="productId" aria-describedby="emailHelp" >
-                    </div>
-			</div>
 
-                <form method="post" action="/catalogue/product/save">
-                    <input type="hidden" name="product[id]" 
-                    value="{% if product.id is defined %}{{ product.id }}{% endif %}">
-                    <div class="form-group">
-                    <label for="inputProduct">code</label>
-                    <input type="text" class="form-control"  value="{% if product.code is defined %}{{ product.code }}{% endif %}"
-                        name="product[code]" id="code" aria-describedby="emailHelp" >
-                    </div>
-                    <div class="form-group">
-                    <label for="inputDescription">Description</label>
-                    <input type="text" class="form-control" value="{% if product.description is defined %}{{ product.description }}{% endif %}"
-                        name="product[description]" id="description">
-                    </div>
-                    <table>
-                    <tr>
-                    <td>
-                    <div class="form-group">
-                    <label for="inputPrecio">Precio 1</label>
-                    <input type="number" step="0.01" required class="form-control" value="{% if product.price1 is defined %}{{ product.price1 | number_format(2, '.', ',' ) }}{% endif %}" 
-                        name="product[price1]" id="price" placeholder="0.00">
-                    </div>
-                    </td>
-                    <td>
-                    <div class="form-group">
-                    <label for="inputPrecio">Precio 2</label>
-                    <input type="number" step="0.01" required class="form-control" value="{% if product.price2 is defined %}{{ product.price2 | number_format(2, '.', ',' ) }}{% endif %}" 
-                        name="product[price2]" id="price2" placeholder="0.00">
-                    </div>
-                    </td>
-                    <td>
-                    <div class="form-group">
-                    <label for="inputPrecio">Precio 3</label>
-                    <input type="number" step="0.01" required class="form-control" value="{% if product.price3 is defined %}{{ product.price3 | number_format(2, '.', ',' ) }}{% endif %}" 
-                        name="product[price3]" id="price3" placeholder="0.00">
-                    </div>
-                    </td>
-                    <td>
-                    <div class="form-group">
-                    <label for="inputPrecio">Precio 4</label>
-                    <input type="number" step="0.01" required class="form-control" value="{% if product.price4 is defined %}{{ product.price4 | number_format(2, '.', ',' ) }}{% endif %}" 
-                        name="product[price4]" id="price4" placeholder="0.00">
-                    </div>
-                    </td>
-                    <td>
-                    <div class="form-group">
-                    <label for="inputPrecio">Precio 5</label>
-                    <input type="number" step="0.01" required class="form-control" value="{% if product.price5 is defined %}{{ product.price5 | number_format(2, '.', ',' ) }}{% endif %}" 
-                        name="product[price5]" id="price5" placeholder="0.00">
-                    </div>
-                    </td>
-                    </tr>
-                    </table>
-                    <div class="form-group">
-                    <label for="selectSupplier">Tipo de Producto</label>
-                    <select class="form-control form-control-lg" name="product[product_type_id]">
-                    {% for productType in productTypes %}
-                        <option value="{{ productType.id  }}"  {% if product.product_type_id is defined and productType.id == product.product_type_id %}selected{% endif %}>{{ productType.description }}</option>
-                    {% endfor %}
-                    </select>
-                    </div>
-                    <div class="form-group">
-                    <label for="selectSupplier">Marca</label>
-                    <select class="form-control form-control-lg" name="product[brand_id]">
-                    {% for brand in brands %}
-                        <option value="{{ brand.id  }}"  {% if product.brand is defined and brand.id == product.brand_id %}selected{% endif %}>{{ brand.description }}</option>
-                    {% endfor %}
-                    </select>
-                    </div>
+<div class="title">
+        <div class="box box-color box-bordered">
+            <div class="box-title">
+                <h3>
+                    {# <i class="fa fa-user"></i> #}
+                    {% if product.description is defined %}{{ product.description }}{% endif %}
+                </h3>
+            </div>
+            <div class="box-content">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <form method="post" action="/catalogue/product/save">
+                            <input type="hidden" name="product[id]" 
+                            value="{% if product.id is defined %}{{ product.id }}{% endif %}">
+                            <div class="form-group">
+                            <label for="inputProduct">code</label>
+                            <input type="text" class="form-control"  value="{% if product.code is defined %}{{ product.code }}{% endif %}"
+                                name="product[code]" id="code" aria-describedby="emailHelp" >
+                            </div>
+                            <div class="form-group">
+                            <label for="inputDescription">Description</label>
+                            <input type="text" class="form-control" value="{% if product.description is defined %}{{ product.description }}{% endif %}"
+                                name="product[description]" id="description">
+                            </div>
+                            <table>
+                            <tr>
+                            <td>
+                            <div class="form-group">
+                            <label for="inputPrecio">Precio 1</label>
+                            <input type="number" step="0.01" required class="form-control" value="{% if product.price1 is defined %}{{ product.price1 | number_format(2, '.', ',' ) }}{% endif %}" 
+                                name="product[price1]" id="price" placeholder="0.00">
+                            </div>
+                            </td>
+                            <td>
+                            <div class="form-group">
+                            <label for="inputPrecio">Precio 2</label>
+                            <input type="number" step="0.01" required class="form-control" value="{% if product.price2 is defined %}{{ product.price2 | number_format(2, '.', ',' ) }}{% endif %}" 
+                                name="product[price2]" id="price2" placeholder="0.00">
+                            </div>
+                            </td>
+                            <td>
+                            <div class="form-group">
+                            <label for="inputPrecio">Precio 3</label>
+                            <input type="number" step="0.01" required class="form-control" value="{% if product.price3 is defined %}{{ product.price3 | number_format(2, '.', ',' ) }}{% endif %}" 
+                                name="product[price3]" id="price3" placeholder="0.00">
+                            </div>
+                            </td>
+                            <td>
+                            <div class="form-group">
+                            <label for="inputPrecio">Precio 4</label>
+                            <input type="number" step="0.01" required class="form-control" value="{% if product.price4 is defined %}{{ product.price4 | number_format(2, '.', ',' ) }}{% endif %}" 
+                                name="product[price4]" id="price4" placeholder="0.00">
+                            </div>
+                            </td>
+                            <td>
+                            <div class="form-group">
+                            <label for="inputPrecio">Precio 5</label>
+                            <input type="number" step="0.01" required class="form-control" value="{% if product.price5 is defined %}{{ product.price5 | number_format(2, '.', ',' ) }}{% endif %}" 
+                                name="product[price5]" id="price5" placeholder="0.00">
+                            </div>
+                            </td>
+                            </tr>
+                            </table>
+                            <div class="form-group">
+                            <label for="selectSupplier">Tipo de Producto</label>
+                            <select class="form-control form-control-lg" name="product[product_type_id]">
+                            {% for productType in productTypes %}
+                                <option value="{{ productType.id  }}"  {% if product.product_type_id is defined and productType.id == product.product_type_id %}selected{% endif %}>{{ productType.description }}</option>
+                            {% endfor %}
+                            </select>
+                            </div>
 
-                    <button type="submit" class="btn btn-primary">{% if product.id > 0 %}Salvar {% else %} Insertar {% endif %}</button>
-                </form>
+                            
+                            <div class="form-group">
+                            <label for="selectSupplier">Marca</label>
+                            <select class="form-control form-control-lg" name="product[brand_id]">
+                            {% for brand in brands %}
+                                <option value="{{ brand.id  }}"  {% if product.brand is defined and brand.id == product.brand_id %}selected{% endif %}>{{ brand.description }}</option>
+                            {% endfor %}
+                            </select>
+                            </div>
+                            
 
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">{% if product.id > 0 %}Salvar {% else %} Insertar {% endif %}</button>
+                                <a href="{{ path_for('showProduct',{'product_id': product.id}) }}"><button type="button" class="btn">Cancel</button></a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-4">
+                        <table class="table">
+                                <thead>
+                                    <tr><th colspan="2">Propiedades</th></tr>
+                                </thead>
+                                <tbody>
+                                    {% for property in propertiesIn %}
+                                    <tr><td>{{ property.id }}</td><td>{{ property.description }}</tr>
+                                    {% endfor %}
+                                </tbody>
+                                </table>
+                                <br><br>
+                        <a href="/catalogue/product/edit/{{product.id}}"><button type="button" class="btn btn-success btn-lg">Editar Propiedades</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </div>
+
 		
 {% endblock %}
 
 {% block scripts %}
 
-	<!-- jQuery -->
+<!-- jQuery -->
 	<script src="/flat/js/jquery.min.js"></script>
+
 	<!-- Nice Scroll -->
 	<script src="/flat/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
-	<!-- jQuery UI -->
-	<script src="/flat/js/plugins/jquery-ui/jquery-ui.js"></script>
-	<!-- slimScroll -->
-	<script src="/flat/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="/flat/js/bootstrap.min.js"></script>
-	<!-- Form -->
-	<script src="/flat/js/plugins/form/jquery.form.min.js"></script>
-
-
-
-
-
-
-
-	<!-- vmap -->
-	<script src="/flat/js/plugins/vmap/jquery.vmap.min.js"></script>
-	<script src="/flat/js/plugins/vmap/jquery.vmap.world.js"></script>
-	<script src="/flat/js/plugins/vmap/jquery.vmap.sampledata.js"></script>
-	<!-- Bootbox -->
-	<script src="/flat/js/plugins/bootbox/jquery.bootbox.js"></script>
-	<!-- Flot -->
-	<script src="/flat/js/plugins/flot/jquery.flot.min.js"></script>
-	<script src="/flat/js/plugins/flot/jquery.flot.bar.order.min.js"></script>
-	<script src="/flat/js/plugins/flot/jquery.flot.pie.min.js"></script>
-	<script src="/flat/js/plugins/flot/jquery.flot.resize.min.js"></script>
 	<!-- imagesLoaded -->
 	<script src="/flat/js/plugins/imagesLoaded/jquery.imagesloaded.min.js"></script>
-	<!-- PageGuide -->
-	<script src="/flat/js/plugins/pageguide/jquery.pageguide.js"></script>
-	<!-- FullCalendar -->
-	<script src="/flat/js/plugins/fullcalendar/moment.min.js"></script>
-	<script src="/flat/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="/flat/js/plugins/jquery-ui/jquery-ui.js"></script>
+	<!-- Bootstrap -->
+	<script src="/flat/js/bootstrap.min.js"></script>
+	<!-- Bootbox -->
+	<script src="/flat/js/plugins/bootbox/jquery.bootbox.js"></script>
+	<!-- Masked inputs -->
+	<script src="/flat/js/plugins/maskedinput/jquery.maskedinput.min.js"></script>
+	<!-- TagsInput -->
+	<script src="/flat/js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+	<!-- Datepicker -->
+	<script src="/flat/js/plugins/datepicker/bootstrap-datepicker.js"></script>
+	<!-- Daterangepicker -->
+	<script src="/flat/js/plugins/daterangepicker/moment.min.js"></script>
+	<script src="/flat/js/plugins/daterangepicker/daterangepicker.js"></script>
+	<!-- Timepicker -->
+	<script src="/flat/js/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+	<!-- Colorpicker -->
+	<script src="/flat/js/plugins/colorpicker/bootstrap-colorpicker.js"></script>
 	<!-- Chosen -->
 	<script src="/flat/js/plugins/chosen/chosen.jquery.min.js"></script>
+	<!-- MultiSelect -->
+	<script src="/flat/js/plugins/multiselect/jquery.multi-select.js"></script>
+	<!-- CKEditor -->
+	<script src="/flat/js/plugins/ckeditor/ckeditor.js"></script>
+	<!-- PLUpload -->
+	<script src="/flat/js/plugins/plupload/plupload.full.min.js"></script>
+	<script src="/flat/js/plugins/plupload/jquery.plupload.queue/jquery.plupload.queue.min.js"></script>
+	<!-- Custom file upload -->
+	<script src="/flat/js/plugins/fileupload/bootstrap-fileupload.min.js"></script>
+	<script src="/flat/js/plugins/mockjax/jquery.mockjax.js"></script>
 	<!-- select2 -->
 	<script src="/flat/js/plugins/select2/select2.min.js"></script>
 	<!-- icheck -->
 	<script src="/flat/js/plugins/icheck/jquery.icheck.min.js"></script>
+	<!-- complexify -->
+	<script src="/flat/js/plugins/complexify/jquery.complexify-banlist.min.js"></script>
+	<script src="/flat/js/plugins/complexify/jquery.complexify.min.js"></script>
+	<!-- Mockjax -->
+	<script src="/flat/js/plugins/mockjax/jquery.mockjax.js"></script>
 
-
-
-
+<script src="/assets/js/multiselect.js"></script>
 	<!-- Theme framework -->
-	{# <script src="/flat/js/eakroko.min.js"></script> #}
+	{# // <script src="/flat/js/eakroko.min.js"></script> #}
 	<!-- Theme scripts -->
 	<script src="/flat/js/application.min.js"></script>
 	<!-- Just for demonstration -->
 	<script src="/flat/js/demonstration.min.js"></script>
+
+<script>
+
+	// multi-select
+	if ($('.multiselect').length > 0) {
+		$(".multiselect").each(function () {
+			var $el = $(this);
+			var selectableHeader = $el.attr('data-selectableheader'),
+				selectionHeader = $el.attr('data-selectionheader');
+			if (selectableHeader != undefined) {
+				selectableHeader = "<div class='multi-custom-header'>" + selectableHeader + "</div>";
+			}
+			if (selectionHeader != undefined) {
+				selectionHeader = "<div class='multi-custom-header'>" + selectionHeader + "</div>";
+			}
+			$el.multiSelect({
+				selectionHeader : selectionHeader,
+				selectableHeader: selectableHeader
+			});
+		});
+	}
+</script>
 	
-	<script src="/assets/js/local/ajax.js"></script>
+    <script src="/assets/js/local/ajax.js"></script>
+    
 {% endblock %}

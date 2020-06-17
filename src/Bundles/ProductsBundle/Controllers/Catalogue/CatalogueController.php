@@ -1,12 +1,14 @@
 <?php namespace Bundles\ProductsBundle\Controllers\Catalogue;
 
 use Tracy\Debugger;
-use Bundles\ProductsBundle\Models\BrandModel;
-use Bundles\ProductsBundle\Models\ProductModel;
-use Bundles\ProductsBundle\Models\SupplierModel;
 use Core\Kernel\ControllerAbstract;
-use Bundles\ProductsBundle\Models\ProductTypeModel;
-use Bundles\ProductsBundle\Models\Product_prop_detailModel;
+use Resources\Database\Models\BrandModel;
+use Resources\Database\Models\ProductModel;
+use Resources\Database\Models\PropertyModel;
+use Resources\Database\Models\SupplierModel;
+use Resources\Database\Models\ProductTypeModel;
+use Resources\Database\Models\ProductPropDetailModel;
+use Resources\Database\Models\Product_prop_detailModel;
 
 
 class CatalogueController extends ControllerAbstract
@@ -33,7 +35,7 @@ class CatalogueController extends ControllerAbstract
         return $this->render($this->bundle . '/Templates/Catalogue/index.twig', $result);
     }
 
-    public function showProduct($product_id)
+    public function showProduct($productId)
     {
         $serviceId = 1;
 
@@ -45,28 +47,32 @@ class CatalogueController extends ControllerAbstract
         $flash = $this->getService('flash');
         
         
-        $product = $this->productsObject->getById($product_id);
+        $product = $this->productsObject->getById($productId);
         if (!$product){
             $flash ->addMessage('fails', 'Id invalido');
             return $response->withRedirect($router->pathFor('showCatalogue'), 303);
         }
-        $property = (new Product_prop_detailModel)->getProperty($product['prod_prop_detail']['id']);
+        // $property = (new ProductPropDetailModel)->getProperty($product['prod_prop_detail']['id']);
+        $product['properties'] = (new PropertyModel)->getAllInProductId($productId);
         
         $messages = $flash->getMessages();
         $result = [
             'remoteUser' => REMOTE_USER,
             'messages' => $messages,
             'product' => $product,
-            'property' => $property,
         ];
         d($result);
         return $this->render($this->bundle . '/Templates/Catalogue/product.twig', $result);
     }
 
-    public function formProduct($product_id = 0)
+    public function formProduct($productId = 0)
     {
-        $product = $this->productsObject->getById($product_id);
-        d($product);
+        $product = $this->productsObject->getById($productId);
+        $product['properties'] = (new ProductPropDetailModel)->getProperty($productId);
+        $propertiesNotInProductId = (new PropertyModel)->getAllNotInProductId($productId);
+        $propertiesInProductId = (new PropertyModel)->getAllInProductId($productId);
+
+        // $properties = PropertyModel::getAll();
         if(!$product['id']) {
             $product['id'] = 0;
         }
@@ -74,8 +80,10 @@ class CatalogueController extends ControllerAbstract
             'product' => $product,
             'brands' => (new BrandModel)->getAll(),
             'productTypes' => (new ProductTypeModel)->getAll(),
+            'propertiesNotIn' => $propertiesNotInProductId,
+            'propertiesIn' => $propertiesInProductId,
         ];
-        // dd($result);
+        d($result);
         return $this->render($this->bundle . '/Templates/Catalogue/formProduct.twig', $result);
     }
     public function saveProduct()
@@ -86,6 +94,7 @@ class CatalogueController extends ControllerAbstract
         $flash = $this->getService('flash');
         
         $product = ($request->getParsedBodyParam('product'));
+        // dd($_POST);
         // $product['id'] = $productId;
         // if (!is_array($product)){
         //     return $response->withRedirect($router->pathFor('showCatalogue'), 303);
