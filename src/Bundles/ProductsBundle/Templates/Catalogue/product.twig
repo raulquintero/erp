@@ -76,9 +76,6 @@
 </div>
 
 
-
-
-
 <div class="container">
 {% if messages.success is defined %}
     {% for message in messages.success %}
@@ -113,7 +110,7 @@
             <div class="box-title">
                 <h3>
                     {# <i class="fa fa-user"></i> #}
-                    {{ product.description | upper }} 
+                    {{ product.description | ucwords }} 
                 </h3>
             </div>
             <div class="box-content nopadding">
@@ -140,7 +137,7 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr><td>{{ product.description | upper }}</td></tr>
+                                    <tr><td>{{ product.description | ucfirst }}</td></tr>
                                 </tbody>
                             </table>
                             <table class="table" >
@@ -201,7 +198,7 @@
                                 </tbody>
                                 </table>
                             </div>
-                            <div class="col-sm-4" style="background: gray">
+                            <div class="col-sm-4">
                                 <a href="/catalogue/product/edit/{{product.id}}"><button type="button" class="btn btn-success btn-lg">Editar Propiedades</button></a>
                             </div>
                         </div>

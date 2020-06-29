@@ -1,7 +1,7 @@
 <?php namespace Bundles\MaintenanceBundle\Controllers\Menu;
 
 use Core\Kernel\ControllerAbstract;
-use Bundles\ProductsBundle\Models\MenuModel;
+use Resources\Database\Models\MenuModel;
 
 
 class MenuController extends ControllerAbstract

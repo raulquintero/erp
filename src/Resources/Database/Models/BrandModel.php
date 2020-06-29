@@ -11,7 +11,7 @@ class BrandModel
     public function getAll()
     {
         // $productTypes = Brand::withTrashed()->get();
-        $productTypes = Brand::all();
+        $productTypes = Brand::orderBy('description', 'Asc')->get();
 
         return $productTypes->toArray();
     }

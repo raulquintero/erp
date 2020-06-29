@@ -7,7 +7,7 @@ class ProductTypeModel
 {
 
     public function getAll(){
-        $productTypes = ProductType::all();
+        $productTypes = ProductType::orderBy('description', 'Asc')->get();
 
         return $productTypes->toArray();
     }
